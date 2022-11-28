@@ -1,0 +1,82 @@
+﻿@using MusicCloud.Models
+@model IEnumerable<MusicCloud.Models.Baihat>
+
+@{
+    User user = (User)Session["taikhoan"];
+    Singer singer = (Singer)Session["casi"];
+    if (user == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    }
+}
+@section login{
+    @RenderPage("~/Views/Home/Login.cshtml")
+}
+@section sign{
+    @RenderPage("~/Views/Home/Sign.cshtml")
+}
+
+<html lang="en">
+<head>
+    <link href="~/Content/detailsnghesi.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="boc">
+        <div class="music">
+            <div class="music-img">
+                <img src="@singer.imgCasi">
+                <h3 class="music-name">
+                    @singer.ngheDanh
+                </h3>
+            </div>
+        </div>
+
+        <div class="thongtin_ns">
+            <h3 class="GT_name">Giới thiệu</h3>
+            <div class="caNhan_ns">
+
+                <ul class="tt_caNhan">
+                    <li>Ngày sinh:<span class="nam_sinh"> @Convert.ToDateTime(singer.birthday).ToString("dd/MM/yyyy")</span></li>
+                    <li>Tên đầy đủ: <span class="hoTen"> @singer.tenCasi</span></li>
+                    <li>Quốc tịch: <span class="quocTich"> @singer.quocGia</span></li>
+                </ul>
+            </div>
+            <p class="thongtin">
+                @Html.Raw(singer.tieuSu)
+            </p>
+        </div>
+    </div>
+    <div class="playlist">
+        <div class="container">
+            <div class="playlist_wrapper">
+                <h3><i class="fa-solid fa-record-vinyl"></i> DANH SÁCH BÀI HÁT</h3>
+                <div class="playlist_oveflow">
+                    <!-- bài hát nè , xóa menu_song -->
+                    @foreach (var item in Model)
+                    {
+                        <div class="menu_song">
+                            <li class="song_item" onclick="location.href='/Home/ListSinger/@singer.idCasi'">
+                                <span><i class="fa-solid fa-music"></i></span>
+                                <a><img src="@item.imgSong" alt=""></a>
+                                <h5>
+                                    @item.tenSong<br>
+                                    <div class="wrapper">
+                                        <a class="song_name_ns">@item.ngheDanh</a>
+                                    </div>
+                                </h5>
+                                <a class="aa"><i class="fa-regular fa-circle-play"></i></a>
+                            </li>
+                        </div>
+                    }
+                </div>
+                <!-- end playlist_oveflow -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

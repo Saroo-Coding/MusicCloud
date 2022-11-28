@@ -1,0 +1,147 @@
+﻿@using MusicCloud.Models
+@model IEnumerable<MusicCloud.Models.Singer>
+@{
+    User user = (User)Session["taikhoan"];
+    if (user == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    }
+}
+@section login{
+    @RenderPage("~/Views/Home/Login.cshtml")
+}
+@section sign{
+    @RenderPage("~/Views/Home/Sign.cshtml")
+}
+<html lang="en">
+<head>
+    <link href="~/Content/nghesi.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Nghệ sĩ line 1-->
+    <div class="nghesi">
+        <div class="container-nghesi">
+            <div class="products-title">
+                <h2>Nghệ sĩ</h2>
+            </div>
+            <div class="product-list-nghesi">
+                <!---->
+                @foreach (var item in Model.Take(5))
+                {
+                    <div class="product-item-nghesi">
+                        <div class="product-anhnghesi">
+                            <a><img src="@item.imgCasi" onclick="location.href='/Home/DetailsNghesi/@item.ngheDanh'"></a>
+                            <div class="product-content-nghesi">
+                                <h3 class="product-name">
+                                    <a href="/Home/DetailsNghesi/@item.ngheDanh">@item.ngheDanh</a>
+                                </h3>
+                                @if (user == null)
+                                {
+                                    <button id="gone" class="btn-nghesi" type="button" onclick="momess()">Quan tâm</button>
+                                }
+                                else
+                                {
+                                    <form action="/Home/Quantam/@user.idUser" method="post">
+                                        <input name="idCasi" style="display:none;" value="@item.idCasi" />
+                                        <input class="nghesii" type="submit" value="Quan tâm" />
+                                    </form>
+                                }
+                                <a href="/Home/DetailsNghesi/@item.ngheDanh"><i class="fa-solid fa-play"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <!---->
+            </div>
+        </div>
+    </div>
+    <!-- Nghệ sĩ line 2-->
+    <div class="nghesi">
+        <div class="container-nghesi">
+            <div class="product-list-nghesi">
+                <!---->
+                @foreach (var item in Model.Skip(5).Take(5))
+                {
+                    <div class="product-item-nghesi">
+                        <div class="product-anhnghesi">
+                            <a><img src="@item.imgCasi" onclick="location.href='/Home/DetailsNghesi/@item.ngheDanh'"></a>
+                            <div class="product-content-nghesi">
+                                <h3 class="product-name">
+                                    <a href="/Home/DetailsNghesi/@item.ngheDanh">@item.ngheDanh</a>
+                                </h3>
+                                @if (user == null)
+                                {
+                                    <button id="gone" class="btn-nghesi" type="button" onclick="momess()">Quan tâm</button>
+                                }
+                                else
+                                {
+                                    <form action="/Home/Quantam/@user.idUser" method="post">
+                                        <input name="idCasi" style="display:none;" value="@item.idCasi" />
+                                        <input class="nghesii" type="submit" value="Quan tâm" />
+                                    </form>
+                                }
+                                <a href="/Home/DetailsNghesi/@item.ngheDanh"><i class="fa-solid fa-play"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <!---->
+            </div>
+        </div>
+    </div>
+    <!-- Nghệ sĩ line 3-->
+    <div class="nghesi">
+        <div class="container-nghesi">
+            <div class="product-list-nghesi">
+                <!---->
+                @foreach (var item in Model.Skip(10).Take(5))
+                {
+                    <div class="product-item-nghesi">
+                        <div class="product-anhnghesi">
+                            <a><img src="@item.imgCasi" onclick="location.href='/Home/DetailsNghesi/@item.ngheDanh'"></a>
+                            <div class="product-content-nghesi">
+                                <h3 class="product-name">
+                                    <a href="/Home/DetailsNghesi/@item.ngheDanh">@item.ngheDanh</a>
+                                </h3>
+                                @if (user == null)
+                                {
+                                    <button id="gone" class="btn-nghesi" type="button" onclick="momess()">Quan tâm</button>
+                                }
+                                else
+                                {
+                                    <form action="/Home/Quantam/@user.idUser" method="post">
+                                        <input name="idCasi" style="display:none;" value="@item.idCasi" />
+                                        <input class="nghesii" type="submit" value="Quan tâm" />
+                                    </form>
+                                }
+                                <a href="/Home/DetailsNghesi/@item.ngheDanh"><i class="fa-solid fa-play"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <!---->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<style>
+    .nghesii {
+        margin-top: 10px;
+        padding: 8px 20px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+        background: linear-gradient(to right, #2D0149, #1d012f);
+        border: none;
+        font-size: 14px;
+        border-radius: 15px;
+        color: aquamarine;
+    }
+
+        .nghesii:hover {
+            color: fuchsia;
+        }
+</style>

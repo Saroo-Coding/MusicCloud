@@ -1,0 +1,66 @@
+﻿@model MusicCloud.Models.ViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<html lang="en">
+<head>
+    <link href="~/Content/Qtam.css" rel="stylesheet" />
+</head>
+<body>
+    <main>
+        <div class="container_qt">
+            <!-- click vào hình ảnh với tên sẽ ra trang thông tin nghệ sĩ, click vào icon Nhạc thì ra trang phát nhạc -->
+            <h2><i class="fa-solid fa-hand-point-right"></i> Nghệ sĩ bạn quan tâm</h2>
+            <div class="wrapper">
+                <!--  -->
+                @foreach (var item in Model.Singers.Take(5))
+                {
+                    <div class="wrapper_qt">
+                        <div class="img_qt" onclick="location.href='/Home/DetailsNghesi/@item.ngheDanh'">
+                            <img src="@item.imgCasi" alt="">
+                        </div>
+                        <div class="name_qt">
+                            <a href="/Home/DetailsNghesi/@item.ngheDanh"><h3>@item.ngheDanh</h3></a>
+                        </div>
+                        <a href="/Home/ListSinger/@item.idCasi"><i class="fa-solid fa-music"></i></a>
+                    </div>
+                }
+                <!---->
+            </div>
+            <div class="wrapper">
+                <!--  -->
+                @foreach (var item in Model.Singers.Skip(5).Take(5))
+                {
+                <div class="wrapper_qt">
+                    <div class="img_qt" onclick="location.href='/Home/DetailsNghesi/@item.ngheDanh'">
+                        <img src="@item.imgCasi" alt="">
+                    </div>
+                    <div class="name_qt">
+                        <a href="/Home/DetailsNghesi/@item.ngheDanh"><h3>@item.ngheDanh</h3></a>
+                    </div>
+                    <a href="/Home/ListSinger/@item.idCasi"><i class="fa-solid fa-music"></i></a>
+                </div>
+                }
+                <!---->
+            </div>
+            <div class="wrapper">
+                <!--  -->
+                @foreach (var item in Model.Singers.Skip(10).Take(5))
+                {
+                    <div class="wrapper_qt">
+                        <div class="img_qt" onclick="location.href='/Home/DetailsNghesi/@item.ngheDanh'">
+                            <img src="@item.imgCasi" alt="">
+                        </div>
+                        <div class="name_qt">
+                            <a href="/Home/DetailsNghesi/@item.ngheDanh"><h3>@item.ngheDanh</h3></a>
+                        </div>
+                        <a href="/Home/ListSinger/@item.idCasi"><i class="fa-solid fa-music"></i></a>
+                    </div>
+                }
+                <!---->
+            </div>
+        </div>
+    </main>
+</body>
+</html>

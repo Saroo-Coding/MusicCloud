@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d9876ed7d9.js" crossorigin="anonymous"></script>
+    <link href="~/Content/header_nologin.css" rel="stylesheet" />
+    <link href="~/Content/header_nologin_mobile.css" rel="stylesheet" />
+    <link rel="icon" href="~/Image/logo.png" type="image/x-icon" />
+    <title>Music cloud</title>
+</head>
+<body>
+    <header>
+        <section>
+            <div class="login" id="openlogin" style="display:none;">
+                <div onclick="dong()" style="float: right; width: 30px; height: 30px; background-color: azure; border-top-right-radius: 9px;">
+                </div>
+                @RenderSection("login", false)
+            </div>
+            <div class="sign" id="opensign" style="display:none;">
+                <div onclick="dong()" style="float: right; width: 30px; height: 30px; background-color: azure; border-top-right-radius: 9px;">
+                </div>
+                @RenderSection("sign", false)
+            </div>
+            <div class="mess" id="openmess" style="display:none;">
+                <div onclick="dong()" style="float: right; width: 30px; height: 30px; background-color: azure; border-top-right-radius: 9px;">
+                </div>
+                <h3 style="text-align:center;margin-top:11%;">Bạn phải đăng nhập để thực hiện chức năng này</h3>
+                <button class="nghesine" type="button" onclick="mologin()" style="background: linear-gradient(to right, #520c7d, #1b9fe6); margin-top: 5%; margin-left: 37%; ">Đăng nhập</button>
+            </div>
+            <div class="menu_top">
+                <div class="container">
+                    <div class="name" onclick="location.href='/Home/Index'">
+                        <h2 class="name_1">Music</h2> <h2 class="name_2"> Cloud</h2>
+                    </div>
+                    <div class="menu_click">
+                        <ul class="menu_links">
+                            <li class="link" onclick="momess()"><i class="fa-solid fa-user-large"></i><a>Cá nhân</a></li>
+                            <li class="link" onclick="momess()"><i class="fa-solid fa-id-card"></i><a>Quan tâm</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- thanh trắng ngang -->
+            <div class="border_bottom"></div>
+            <!-- end thanh trắng ngang -->
+            <div class="menu_bottom">
+                <div class="container">
+                    <div class="menu_click">
+                        <ul class="menu_link">
+                            <li class="link"><i class="fa-solid fa-music"></i><a href="/Home/Baihat/0">Nhạc mới</a></li>
+                            <li class="link"><i class="fa-solid fa-icons"></i><a href="/Home/Theloai/0">Thể loại</a></li>
+                            <li class="link"><i class="fa-regular fa-star"></i><a href="/Home/Top100/0">Top 100</a></li>
+                            <li class="link"><a style="color: #1d022e">nothing here</a></li>
+                        </ul>
+                        <ul class="menu_links">
+                            <li class="link">
+                                <p>Đăng nhập để khám phá playlist dành cho bạn</p>
+                                <button class="button_DangNhap" onclick="mologin()"><a>Đăng nhập</a></button>
+                            </li>
+                            <li class="links">
+                                <p>Nghe nhạc không quảng cáo cùng kho nhạc VIP</p>
+                                <button class="button_NangCapVip"><a href="">Nâng cấp Vip</a></button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="logo_nhom">
+                    @*<img class="container-anh" src="~/Image/logo.png" alt="logo nhóm">*@
+                </div>
+            </div>
+        </section>
+        <div class="menu_timkiem">
+            <div class="box">
+                <div class="menu_timkiems">
+                    <span class="icon"><i class="fa fa-search"></i></span>
+                    <input type="search" id="search" placeholder="Tìm kiếm nghệ sĩ, bài hát,..." />
+                </div>
+            </div>
+            <div class="menu_user">
+                <div class="user_vip">
+                    <a class="click_vip" href=""><i class="fa-regular fa-gem" title="Nâng cấp Vip"></i></a>
+                </div>
+                <div class="users">
+                    <div class="click_user">
+                        <img src="~/Image/user.jpg" alt="Ảnh user">
+                        <div class="click-navigation">
+                            <ul>
+                                <li class="clicks"><a href="/Home/Vip" target="_blank"><i class="fa-regular fa-gem"></i>Nâng cấp Vip</a></li>
+                                <li class="clicks"><a href="/Home/Thongtin" target="_blank"><i class="fa-solid icon_GT fa-exclamation"></i>Giới thiệu</a></li>
+                                <li class="clicks">
+                                    <a onclick="mologin()">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>Đăng nhập
+                                    </a>
+                                </li>
+                                <li class="clicks">
+                                    <a onclick="mosign()">
+                                        <i class="fa-solid fa-pen-to-square"></i>Đăng kí
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="noidung">
+            @RenderBody()
+        </div>
+    </header>
+
+    <script src="~/Scripts/header_nologin.js"></script>
+    <footer>
+        @RenderSection("footer", false)
+    </footer>
+</body>
+</html>
+<script>
+    function mologin() {
+        var x = document.getElementById("openlogin");
+        var y = document.getElementById("opensign");
+        var z = document.getElementById("openmess");
+        if (y.style.display == "block" || z.style.display == "block") {
+            y.style.display = "none";
+            z.style.display = "none";
+            x.style.display = "block";
+        }
+        else {
+            x.style.display = "block";
+        }
+    }
+    function mosign() {
+        var x = document.getElementById("opensign");
+        var y = document.getElementById("openlogin");
+        if (y.style.display == "block") {
+            y.style.display = "none";
+            x.style.display = "block";
+        }
+        else {
+            x.style.display = "block";
+        }
+    }
+
+    function dong() {
+        var x = document.getElementById("openlogin");
+        var y = document.getElementById("opensign");
+        var z = document.getElementById("openmess");
+        x.style.display = "none";
+        y.style.display = "none";
+        z.style.display = "none";
+    }
+    function momess() {
+        document.getElementById("openmess").style.display = "block";
+    }
+</script>
+<style>
+    .noidung {
+        margin-top: 5%;
+        position: absolute;
+        margin-left: 14.8%;
+        width: 85%;
+        overflow: auto;
+        height: 89.2%;
+    }
+
+        .noidung::-webkit-scrollbar {
+            display: none;
+        }
+
+    .login {
+        box-shadow: rgb(0 0 0 / 40%) 0px 0px 10px;
+        border-radius: 10px;
+        width: 30%;
+        height: 60%;
+        background-color: #1d022ec2;
+        position: absolute;
+        z-index: 1;
+        left: 40%;
+        bottom: 20%;
+    }
+
+    .sign {
+        box-shadow: rgb(0 0 0 / 40%) 0px 0px 10px;
+        border-radius: 10px;
+        width: 30%;
+        height: 70%;
+        background-color: #1d022ec2;
+        position: absolute;
+        z-index: 1;
+        left: 40%;
+        bottom: 15%;
+    }
+
+    .mess {
+        box-shadow: rgb(0 0 0 / 40%) 0px 0px 10px;
+        border-radius: 10px;
+        width: 33%;
+        height: 20%;
+        background-color: #1d022ec2;
+        position: absolute;
+        z-index: 1;
+        left: 38%;
+        bottom: 50%;
+    }
+
+    .nghesine {
+        margin-top: 10px;
+        padding: 8px 20px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+        background: linear-gradient(to right, #2D0149, #1d012f);
+        border: none;
+        font-size: 14px;
+        border-radius: 15px;
+        color: aquamarine;
+    }
+
+        .nghesine:hover {
+            color: fuchsia;
+        }
+</style>

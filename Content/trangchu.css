@@ -1,0 +1,703 @@
+﻿* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none; /*xóa dấu chấm*/
+}
+
+a {
+    text-decoration: none; /*bỏ gạch chân*/
+    color: #ffff;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+
+body {
+    color: #ffff;
+}
+
+.mobile-nav {
+    display: none;
+}
+
+.wrapper {
+    position: relative;
+}
+
+
+.slide.active {
+    display: flex;
+}
+
+.slide {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.btn {
+    position: absolute;
+    top: 50%;
+    left: 50px;
+    transform: translateY(-50%);
+}
+
+    .btn.next {
+        left: unset; /*ko ăn left ở trên*/
+        right: 50px;
+    }
+
+    .btn button {
+        display: block;
+        width: 40px;
+        height: 40px;
+        background: transparent;
+        border: 0;
+        /* border-radius:15px; */
+        font-size: 25px;
+        cursor: pointer;
+        color: #ffff;
+    }
+
+/*Gợi ý cho bạn*/
+.tranggiua-boc {
+    height: 150px;
+    position: relative;
+    margin: 30px 40px;
+    background: linear-gradient(to right, #520c7d, #1b9fe6);
+    color: #ffff;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+}
+
+    .tranggiua-boc h2 {
+        font-size: 20px;
+        padding: 5px 10px;
+    }
+
+    .tranggiua-boc .container-anh {
+        padding-top: 5px;
+        height: 100px;
+        width: 100px;
+        margin-left: 15px;
+        cursor: pointer;
+    }
+
+.boc-left {
+    display: flex;
+    justify-content: flex-start;
+    margin-right: 15px;
+}
+
+    .boc-left p {
+        font-size: 18px;
+        margin-left: 15px;
+    }
+
+    .boc-left img {
+        border-radius: 10px;
+    }
+
+.tranggiua-boc .boc-right {
+    position: absolute;
+    right: 30px;
+    top: 50px;
+}
+
+.boc-right button {
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    border-radius: 15px;
+    border: 2px solid #ffff;
+    background: linear-gradient(to right, #520c7d, #1b9fe6);
+}
+
+    .boc-right button i {
+        font-size: 20px;
+        color: #ffff;
+        cursor: pointer;
+    }
+/*end Gợi ý cho bạn*/
+
+/* BÀI HÁT  , ALBUM*/
+.app-content {
+    margin: 30px 50px;
+    width: auto;
+    height: 500px;
+    padding: 20px 10px;
+    border: none;
+    background: #1d012f;
+    border-radius: 15px;
+}
+
+.tabs {
+    display: flex;
+}
+
+    .tabs li {
+        margin-left: 15px;
+        margin-right: 15px;
+        cursor: pointer;
+        padding: 10px 20px;
+        color: white;
+        border-radius: 15px;
+        border: none;
+        transition: .4s;
+        background-color: #2D0149;
+    }
+
+        .tabs li.active {
+            background: linear-gradient(to right, #520c7d, #1b9fe6);
+            color: white;
+        }
+
+.tab-content {
+    display: none;
+    position: relative;
+}
+    /* NÚT ALL BÀI HÁT*/
+    .tab-content .All-baihat {
+        position: absolute;
+        margin-top: 7px;
+        left: 90%;
+        font-size: 18px;
+    }
+
+        .tab-content .All-baihat:hover {
+            color: #B43AFF;
+        }
+
+.All-baihat-mobile {
+    display: none;
+}
+/* END NÚT ALL BÀI HÁT*/
+/* NÚT ALL ALBUM*/
+.tab-content .All-album {
+    position: absolute;
+    margin-top: 7px;
+    left: 90%;
+    font-size: 18px;
+}
+
+    .tab-content .All-album:hover {
+        color: #B43AFF;
+    }
+
+.All-album-mobile {
+    display: none;
+}
+/* END NÚT ALL ALBUM*/
+
+.tab-content.active {
+    display: block;
+}
+
+/* BÀI HÁT*/
+.container-baihat {
+    margin: 50px 20px;
+    padding: 0 50px;
+}
+
+.Baihat-list {
+    display: flex;
+    margin: 30px 50px;
+}
+
+    .Baihat-list .Baihat:hover img {
+        transition: .8s;
+        opacity: .6;
+    }
+
+    .Baihat-list .Baihat {
+        position: relative;
+        display: flex;
+        width: calc(100% / 3 - 20px); /*phép tính*/
+        height: 100px;
+        border-radius: 15px;
+    }
+
+        .Baihat-list .Baihat:hover {
+            background: linear-gradient(to right, #520c7d, #1b9fe6);
+            transition: .8s;
+        }
+
+.Baihat .Baihat-img {
+    margin: 10px 10px;
+    height: 80px;
+    width: 80px;
+    position: absolute;
+    vertical-align: middle;
+}
+/*icon */
+.Baihat-list .Baihat:hover .fa-solid {
+    display: block; /* để chuột ms hiện nút*/
+}
+
+.Baihat-list .Baihat .fa-solid:hover {
+    opacity: .8;
+}
+
+.Baihat-list .fa-solid {
+    position: absolute;
+    top: 35%;
+    left: 40%;
+    color: #6A05A9;
+    font-size: 30px;
+    display: none; /* để chuột ms hiện nút |>|*/
+}
+
+.Baihat .Baihat-img img {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+    border-radius: 15px;
+}
+/*Baihat-content*/
+.Baihat-content {
+    white-space: nowrap;
+    width: 60%;
+    overflow: hidden;
+    margin: 15px 0;
+    left: 40%;
+    position: absolute;
+}
+
+.Baihat .Baihat-content .day {
+    margin-top: 5px;
+    opacity: .8;
+}
+
+.Baihat-content .Baihat-name a {
+    color: #ffff;
+}
+
+.Baihat-content .Baihat-name {
+    margin-bottom: 5px;
+}
+
+.Baihat-content > a {
+    opacity: .8;
+}
+
+.Baihat-content:hover > a p {
+    color: fuchsia;
+    text-decoration: underline;
+}
+/* END BÀI HÁT */
+
+/*ALBUM*/
+.container-album {
+    margin: 50px 40px;
+}
+
+.album-list {
+    display: flex;
+}
+
+    .album-list .album:hover img {
+        transition: .8s;
+        opacity: .6;
+    }
+
+    .album-list .album {
+        position: relative;
+        display: flex;
+        width: calc(100% / 3 - 20px); /*phép tính*/
+        margin-left: 20px;
+        height: 130px;
+        width: 280px;
+        border-radius: 10px;
+    }
+
+        .album-list .album:hover {
+            /* background-color: #2D0149; */
+            background: linear-gradient(to right, #520c7d, #1b9fe6);
+            transition: .8s;
+        }
+
+.album .album-img {
+    margin: 10px 10px;
+    height: 110px;
+    width: 110px;
+    position: absolute;
+    vertical-align: middle;
+}
+/*icon */
+.album-list .album:hover .fa-solid {
+    display: block; /* để chuột ms hiện nút*/
+}
+
+.album-list .album .fa-solid:hover {
+    opacity: .8;
+}
+
+.album-list .fa-solid {
+    position: absolute;
+    top: 35%;
+    margin-left: 42%;
+    color: #6A05A9;
+    font-size: 30px;
+    display: none; /* để chuột ms hiện nút |>|*/
+}
+
+.album .album-img img {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+    border-radius: 15px;
+}
+/*album-content*/
+.album-content {
+    margin: 15px 15px;
+    left: 45%;
+    position: absolute;
+}
+
+.album .album-content .day {
+    margin-top: 5px;
+    opacity: .8;
+}
+
+.album-content .album-name a {
+    color: #ffff;
+}
+
+.album-content .album-name {
+    margin-bottom: 5px;
+}
+
+.album-content > a {
+    opacity: .8;
+}
+
+.album-content:hover > a p {
+    color: fuchsia;
+    text-decoration: underline;
+}
+/*END ALBUM*/
+
+/* end BÀI HÁT  , ALBUM*/
+
+/*Xem gi Hom nay, Top 100*/
+.container {
+    height: 100%;
+    width: 90%;
+    padding-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 50px;
+}
+
+.section {
+    padding: 20px 0;
+}
+/*start products*/
+.products-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .products-title h2 {
+        font-size: 25px;
+    }
+
+    .products-title a {
+        font-size: 20px;
+    }
+
+    .products-title:hover a {
+        color: fuchsia;
+    }
+/* end start products*/
+
+/* img */
+.product-list {
+    display: flex;
+    margin: 50px 0;
+    justify-content: space-between;
+}
+
+    .product-list .product-item {
+        position: relative;
+        width: calc(100% / 3 - 20px); /*phép tính*/
+    }
+
+        .product-list .product-item:hover img {
+            opacity: .4;
+            transition: .7s;
+        }
+
+.product-item {
+    margin-left: 15px;
+}
+
+    .product-item .product-img {
+        height: 200px;
+        width: 200px;
+    }
+
+        .product-item .product-img img {
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+            border-radius: 10px;
+        }
+    /* end img */
+
+    /*product-content*/
+    .product-item .product-content {
+        margin-top: 10px;
+    }
+
+.product-content .product-name a {
+    color: #ffff;
+}
+
+.product-content .product-name:hover a {
+    color: fuchsia;
+}
+
+.product-content .product-name {
+    margin-bottom: 5px;
+}
+
+.product-content .product-category {
+    font-size: 13px;
+}
+/* end product-content*/
+
+/*icon */
+.product-list .product-item:hover .fa-solid {
+    display: block; /* để chuột ms hiện nút*/
+}
+
+.product-list .product-item .fa-solid:hover {
+    color: rgb(168, 17, 168);
+}
+
+.product-list .fa-solid {
+    position: absolute;
+    top: 35%;
+    margin-left: 90px;
+    color: fuchsia;
+    font-size: 30px;
+    display: none; /* để chuột ms hiện nút |>|*/
+}
+
+/*end icon*/
+/* end Xem gi Hom nay, end Top 100*/
+
+/* nghệ sĩ */
+.container-nghesi {
+    height: 100%;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.product-list-nghesi {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 50px;
+}
+
+    .product-list-nghesi .product-item-nghesi {
+        position: relative;
+        display: flex;
+        width: calc(100% / 3 - 20px); /*phép tính*/
+    }
+
+.product-item-nghesi .product-anhnghesi {
+    height: 150px;
+    width: 150px;
+}
+
+/*icon */
+.product-list-nghesi .product-item-nghesi:hover .fa-solid {
+    display: block; /* để chuột ms hiện nút*/
+}
+
+.product-list-nghesi .product-item-nghesi .fa-solid:hover {
+    color: rgb(168, 17, 168);
+}
+
+.product-list-nghesi .fa-solid {
+    position: absolute;
+    top: 40%;
+    margin-left: 60px;
+    color: fuchsia;
+    font-size: 30px;
+    display: none; /* để chuột ms hiện nút |>|*/
+}
+/*end icon*/
+
+/* nut button góc nhạc */
+.product-content-nghesi button {
+    color:white;
+    margin-top: 10px;
+    padding: 8px 20px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+    background: linear-gradient(to right, #2D0149, #1d012f);
+    border: 0;
+    font-size: 14px;
+    border-radius: 15px;
+}
+
+    .product-content-nghesi button:hover a {
+        color: fuchsia;
+    }
+/* end nut button góc nhạc */
+
+/*icon button*/
+
+/*end icon button*/
+.product-item-nghesi .product-anhnghesi img {
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+}
+
+.product-item-nghesi .product-anhnghesi:hover img {
+    opacity: .5;
+    transition: .8s;
+}
+/*product-content-nghesi*/
+.product-content-nghesi {
+    text-align: center;
+}
+
+.product-item-nghesi .product-content-nghesi {
+    margin-top: 10px;
+}
+
+.product-content-nghesi .product-name a {
+    color: #ffff;
+}
+
+.product-content-nghesi .product-name:hover a {
+    color: fuchsia;
+}
+
+.product-content-nghesi .product-name {
+    margin-bottom: 5px;
+}
+
+.product-content-nghesi .product-category {
+    font-size: 13px;
+}
+/* end product-content-nghesi*/
+/* end nghệ sĩ */
+
+
+/*nhac moi*/
+/*start products*/
+.nhacmoi-title {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .nhacmoi-title h2 {
+        font-size: 25px;
+    }
+
+    .nhacmoi-title a {
+        font-size: 20px;
+    }
+
+    .nhacmoi-title:hover a {
+        color: fuchsia;
+    }
+/* end start products*/
+.nhacmoi-list {
+    display: flex;
+    margin: 50px 50px;
+    justify-content: center;
+}
+
+    .nhacmoi-list .nhacmoi:hover img {
+        transition: .8s;
+        opacity: .6;
+    }
+
+    .nhacmoi-list .nhacmoi {
+        position: relative;
+        display: flex;
+        width: calc(100% / 3 - 20px);
+        background: linear-gradient(to right, #520c7d, #1b9fe6);
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+        margin-left: 15px;
+        height: 150px;
+        width: 380px;
+        border-radius: 15px;
+    }
+
+.nhacmoi .nhacmoi-img {
+    margin: 20px 20px;
+    height: 110px;
+    width: 110px;
+    position: absolute;
+    vertical-align: middle;
+}
+
+/*icon */
+.nhacmoi-list .nhacmoi:hover .fa-solid {
+    display: block; /* để chuột ms hiện nút*/
+}
+
+.nhacmoi-list .fa-solid {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    color: fuchsia;
+    font-size: 30px;
+    display: none; /* để chuột ms hiện nút |>|*/
+}
+
+
+
+.nhacmoi .nhacmoi-img img {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+    border-radius: 15px;
+}
+/*nhacmoi-content*/
+.nhacmoi-content {
+    top: 15%;
+    position: absolute;
+    left: 42%;
+}
+
+    .nhacmoi-content .thoigian-xephang {
+        line-height: 1.8;
+    }
+
+    .nhacmoi-content .xephang {
+        font-size: 40px;
+        opacity: .6;
+        margin-right: 80px;
+    }
+
+    .nhacmoi-content .thoigianra {
+        color: #ffff;
+    }
+
+.nhacmoi .nhacmoi-content {
+    margin-top: 10px;
+}
+
+.nhacmoi-content .nhacmoi-name a {
+    color: #ffff;
+}
+
+.nhacmoi-content .nhacmoi-name {
+    margin-bottom: 5px;
+}
+
+.nhacmoi-content:hover > a {
+    color: fuchsia;
+}
+/*end nhac moi*/

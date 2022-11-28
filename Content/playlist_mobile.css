@@ -1,0 +1,30 @@
+﻿@media screen and (max-width: 820px) {
+    /* nghe gì hôm nay, top 100*/
+    .navigation-links {
+        display: none;
+    }
+
+    .product-list {
+        flex-wrap: wrap;
+    }
+
+        .product-list .product-item {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+    .Maintenance-list {
+        flex-wrap: wrap;
+    }
+
+        .Maintenance-list .Maintenance-item {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+    /* end nghe gì hôm nay, top 100*/
+
+    /* tim */
+    .playlist_wrapper .menu_song .nut_tym {
+        display: none;
+    }
+}

@@ -1,0 +1,137 @@
+﻿body{
+    color:white;
+}
+
+ul {
+    list-style: none; /*xóa dấu chấm*/
+}
+
+a {
+    text-decoration: none; /*bỏ gạch chân*/
+    color: #ffff;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+
+/* nghệ sĩ */
+.container-nghesi {
+    height: 100%;
+    width: 90%;
+    padding-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 50px;
+}
+/*start products*/
+.products-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .products-title h2 {
+        font-size: 25px;
+    }
+
+    .products-title a {
+        font-size: 20px;
+    }
+
+    .products-title:hover a {
+        color: fuchsia;
+    }
+/* end start products*/
+.product-list-nghesi {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 50px;
+}
+
+    .product-list-nghesi .product-item-nghesi {
+        position: relative;
+        display: flex;
+        width: calc(100% / 3 - 20px); /*phép tính*/
+    }
+
+.product-item-nghesi .product-anhnghesi {
+    height: 150px;
+    width: 150px;
+}
+
+/*icon */
+.product-list-nghesi .product-item-nghesi:hover .fa-solid {
+    display: block; /* để chuột ms hiện nút*/
+}
+
+.product-list-nghesi .product-item-nghesi .fa-solid:hover {
+    opacity: .7;
+}
+
+.product-list-nghesi .fa-solid {
+    position: absolute;
+    top: 40%;
+    margin-left: 65px;
+    font-size: 30px;
+    display: none; /* để chuột ms hiện nút |>|*/
+}
+/*end icon*/
+
+/* nut button góc nhạc */
+.product-content-nghesi button {
+    color:white;
+    margin-top: 10px;
+    padding: 8px 20px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+    background: linear-gradient(to right, #2D0149, #1d012f);
+    border: 0;
+    font-size: 14px;
+    border-radius: 15px;
+}
+
+    .product-content-nghesi button:hover a {
+        color: fuchsia;
+    }
+/* end nut button góc nhạc */
+
+/*icon button*/
+
+/*end icon button*/
+.product-item-nghesi .product-anhnghesi img {
+    border-radius: 5%;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+}
+
+.product-item-nghesi .product-anhnghesi:hover img {
+    opacity: .5;
+    transition: .8s;
+}
+/*product-content-nghesi*/
+.product-content-nghesi {
+    text-align: center;
+}
+
+.product-item-nghesi .product-content-nghesi {
+    margin-top: 10px;
+}
+
+.product-content-nghesi .product-name a {
+    color: #ffff;
+}
+
+.product-content-nghesi .product-name:hover a {
+    color: fuchsia;
+}
+
+.product-content-nghesi .product-name {
+    margin-bottom: 5px;
+}
+
+.product-content-nghesi .product-category {
+    font-size: 13px;
+}
+/* end product-content-nghesi*/
+/* end nghệ sĩ */

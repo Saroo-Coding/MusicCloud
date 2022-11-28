@@ -1,0 +1,144 @@
+﻿@using MusicCloud.Models
+@model IEnumerable<MusicCloud.Models.Playlist>
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    User user = (User)Session["taikhoan"];
+    List<Baihat> bh = (List<Baihat>)Session["bh"];
+}
+<html lang="en">
+<head>
+    <link href="~/Content/playlist.css" rel="stylesheet" />
+    <link href="~/Content/playlist_mobile.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- playlist -->
+    <div class="playlist_ns">
+        <div class="container">
+            <div class="products-title">
+                <h2><i class="fa-brands fa-playstation"></i> Playlist của bạn</h2>
+            </div>
+            <div class="product-list">
+                <div onclick="mo()" id="tbao" class="product-item">
+                    <div class="product-img">
+                        <img src="~/Image/add_playlist.png" style="background-color: wheat; box-shadow: rgb(0 0 0 / 40%) 0px 0px 10px; border-radius: 10px;">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-name">
+                            <a>Tạo playlist của bạn</a>
+                        </h3>
+                    </div>
+                </div>
+                <div id="add" class="product-item" style="display:none">
+                    <form class="form" action="/Home/Playlist/@user.idUser" enctype="multipart/form-data" method="post">
+                        <i onclick="mo()" class="fa-solid fa-xmark" style="color: red; margin-left: 66%; display: block; top: 0;"></i>
+                        <h3>Thêm tên playlist</h3>
+                        <input style="width: 100%; padding: 5px; margin: 10px 0; border-radius: 5px; border: none;" type="text" name="ten" required />
+                        <h3>Thêm ảnh bìa</h3>
+                        <input type="file" name="file" style="margin: 10px 0;" />
+                        <input onclick="mo()" class="btnlogin" type="submit" value="Thêm" />
+                    </form>
+                </div>
+                <!---->
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <div class="product-item">
+                            <form id="myF" action="/Home/_list/@item.idPlaylist" method="post">
+                                <button type="submit" name="user" value="@user.idUser" class="product-img" style="box-shadow: rgb(0 0 0 / 40%) 0px 0px 10px; border-radius: 10px">
+                                    <img src="@item.imgList">
+                                </button>
+                                <div class="product-content">
+                                    <h3 class="product-name">@item.tenList</h3>
+                                    <a><i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </form>
+                        </div>
+                    }
+                }
+                else { }
+                <!---->
+            </div>
+        </div>
+    </div>
+    <!-- bai Hat -->
+    <div class="playlist">
+        <div class="container">
+            <div class="playlist_wrapper">
+                <h2><span><i class="fa-solid fa-music"></i></span> Bài hát</h2>
+                @if (bh == null)
+                {
+                    <div class="playlist_oveflow">
+                        <div class="menu_song">
+                            <h2 style="text-align:center">
+                                Chưa có bài hát nào
+                            </h2>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    foreach (var item in bh)
+                    {
+                        <div class="playlist_oveflow" onclick="location.href='/Home/Playmusic/@item.idSong'">
+                            <div class="menu_song">
+                                <li class="song_item">
+                                    <span><i class="fa-solid fa-music"></i></span>
+                                    <a><img src="@item.imgSong" alt=""></a>
+                                    <h5>
+                                        @item.tenSong<br>
+                                        <div class="wrapper">
+                                            <a class="song_name_ns" href="">@item.ngheDanh</a>
+                                        </div>
+                                    </h5>
+                                    <i class="fa-solid nut_tym fa-heart-circle-plus" title="yêu thích"></i>
+                                    <a class="aa" href=""><i class="fa-regular fa-circle-play"></i></a>
+                                </li>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/playlist.js"></script>
+</body>
+</html>
+<script>
+    
+    function mo() {
+        var x = document.getElementById("tbao");
+        var y = document.getElementById("add");
+        if (x.style.display == "block") {
+            x.style.display = "none";
+            y.style.display = "block";
+        }
+        else {
+            x.style.display = "block";
+            y.style.display = "none";
+        }
+    }
+</script>
+<style>
+    .btnlogin {
+        margin-top: 2%;
+        padding: 8px 20px;
+        box-shadow: rgb(0 0 0 / 40%) 0px 0px 10px;
+        background: linear-gradient(to right, #73c05d, #d93a78, #1b65e6);
+        border: none;
+        font-size: 14px;
+        border-radius: 15px;
+        color: #ffff;
+        width: 60%;
+    }
+
+    .form {
+        color: black;
+        box-shadow: rgb(0 0 0 / 40%) 0px 0px 10px;
+        border-radius: 10px;
+        padding: 16px;
+        background-color: wheat;
+        display: table-caption;
+    }
+</style>
+

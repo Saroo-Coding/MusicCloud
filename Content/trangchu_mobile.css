@@ -1,0 +1,149 @@
+﻿@media screen and (max-width: 820px) {
+    /* nghe gì hôm nay, top 100*/
+    .navigation-links {
+        display: none;
+    }
+
+    .product-list {
+        flex-wrap: wrap;
+    }
+
+        .product-list .product-item {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+    .Maintenance-list {
+        flex-wrap: wrap;
+    }
+
+        .Maintenance-list .Maintenance-item {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+    /* end nghe gì hôm nay, top 100*/
+
+    /* Goi y bai hat */
+    .tranggiua-boc {
+        width: 87%;
+        margin-left: 27px;
+    }
+
+        .tranggiua-boc .cap {
+            display: none;
+        }
+
+    .boc-right {
+        display: none;
+    }
+    /* end Goi y bai hat */
+
+    /*album ,bai hat*/
+    .hangduoi {
+        display: none;
+    }
+
+    .app-content {
+        width: 90%;
+        margin-left: 20px;
+        height: 600px;
+        background: #1d012f;
+    }
+    /*bai hat*/
+    .tab-content .Baihat-list {
+        display: flex;
+        flex-direction: column;
+        margin-left: -100px;
+    }
+
+        .tab-content .Baihat-list .Baihat {
+            margin-top: 20px;
+        }
+    /* NÚT ALL BÀI HÁT*/
+    .tab-content .All-baihat {
+        display: none;
+    }
+
+    .All-baihat-mobile {
+        display: block;
+        text-align: center;
+        margin-top: 80px;
+    }
+    /* end bai hat*/
+
+    /*album*/
+    .tab-content .album-list {
+        display: flex;
+        flex-direction: column;
+        margin-left: -100px;
+    }
+
+        .tab-content .album-list .album {
+            margin-left: 5px;
+        }
+
+    .tab-content .album-content {
+        margin-top: 28px;
+        margin-left: -10px;
+    }
+    /* end album*/
+
+    /* nut all album*/
+    .tab-content .All-album {
+        display: none;
+    }
+
+    .All-album-mobile {
+        display: block;
+        text-align: center;
+    }
+    /* end album,  bai hat*/
+
+
+    /* nghe si*/
+
+    .product-list-nghesi {
+        flex-wrap: wrap;
+        background: #1d012f;
+        border-radius: 40px;
+        height: auto;
+    }
+
+        .product-list-nghesi .product-item-nghesi {
+            width: 100%;
+            margin-top: 50px;
+            margin-bottom: 80px;
+            margin-left: 58px;
+        }
+
+    .btn-nghesi {
+        display: none;
+    }
+    /* end nghe si */
+
+    /*nhac moi*/
+    .nhacmoi-list {
+        flex-wrap: wrap;
+        border-radius: 40px;
+        height: auto;
+        width: 90%;
+        margin-left: 13px;
+    }
+
+        .nhacmoi-list .nhacmoi {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 15px;
+        }
+
+    .nhacmoi-content {
+        margin-left: 5px;
+    }
+
+    .thoigianra {
+        margin-left: -55px;
+    }
+
+
+    /* end nhac moi */
+}

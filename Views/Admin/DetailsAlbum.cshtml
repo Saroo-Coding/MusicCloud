@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MusicCloud.Models.Baihat>
+
+@{
+    Layout = "~/Views/Shared/_LayoutAd.cshtml";
+}
+
+<h2>Các bài hát thuộc album</h2>
+
+<form action="/Admin/DetailsAlbum/@ViewBag.IDAB" method="post">
+    <input name="idab" style="display:none;" value="@ViewBag.IDAB" />
+    @Html.DropDownList("idSong", (IEnumerable<SelectListItem>)ViewBag.idSong, "Chọn bài hát muốn thêm ", new { @style = "font-size: large; width:25%;padding: 5px;" })
+    <button class="btn btn-success" style="margin-bottom: 4px;" type="submit"><span class="glyphicon glyphicon-plus"></span> Thêm bài</button>
+</form>
+<table class="table">
+    <tr>
+        <th>
+            Tên bài
+        </th>
+        <th>
+            Ca sĩ
+        </th>
+        <th>
+            Source
+        </th>
+        <th>
+            Ảnh bìa
+        </th>
+        <th>
+            Lượt thích
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="vertical-align: middle">
+                @Html.DisplayFor(modelItem => item.tenSong)
+            </td>
+            <td style="vertical-align: middle">
+                @Html.DisplayFor(modelItem => item.ngheDanh)
+            </td>
+            <td style="vertical-align: middle">
+                <a href="@Html.DisplayFor(modelItem => item.link)" target="_blank">@Html.DisplayFor(modelItem => item.tenSong)</a>
+            </td>
+            <td style="vertical-align: middle">
+                <img src="@Url.Content(@item.imgSong)" style="width:120px" />
+            </td>
+            <td style="vertical-align: middle">
+                @Html.DisplayFor(modelItem => item.countLike)
+            </td>
+            <td style="vertical-align: middle">
+                <form action="/Admin/XoaKhoiAlbum/@item.idSong" method="post">
+                    <input name="idab" style="display:none;" value="@ViewBag.IDAB" />
+                    <button type="submit" class="btn btn-danger"><p>Xóa khỏi album</p><span class="glyphicon glyphicon-trash"></span></button>
+                </form>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<style>
+    td, th {
+        text-align: center;
+    }
+</style>

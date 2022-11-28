@@ -1,0 +1,127 @@
+﻿@{
+    Layout = null;
+}
+
+<h1 style="margin: 1em auto; text-align: center; text-transform: uppercase;">Đăng nhập</h1>
+<form class="formlogin" action="/Home/Login" method="post" style="margin-left:9%;margin-right:9%;">
+    <fieldset style="border: none; display:inline-grid;width:100%;">
+        <label for="name" style="height: 40px; font-size: larger;">
+            Tên đăng nhập:
+            <input class="form-control" name="name" placeholder="Tài khoản..." type="text" required style="width: 67%; float: right; font-size: large; padding: 2%; border-radius: 10px;" />
+        </label>
+        <label for="nhappass" style="height: 40px; font-size: larger; margin-top: 7%;">
+            Mật khẩu:
+            <input class="form-control" name="nhappass" placeholder="Mật khẩu..." type="password" required style="width: 67%; float: right; font-size: large; padding: 2%; border-radius: 10px;" />
+        </label>
+        <h4 id="status" style="color: red; text-align: center; margin-top: 5%;">@ViewBag.Login</h4>
+        <input class="btnlogin" type="submit" value="Đăng nhập" />
+    </fieldset>
+    <a style="text-align: center; display: block">-------------Đăng nhập bằng-------------</a>
+</form>
+<form id="myF" class="formlogin" action="/Home/LoginFb" method="post" style="margin-left:9%;margin-right:9%;">
+    <fieldset style="display: inline-grid; border: none; width: 100%;text-align:center;">
+        <label style="margin-top: 3%;">
+            <input name="idFb" id="idFb" value="" style="display:none" />
+            <input name="tenFb" id="tenFb" value="" style="display:none" />
+            <input name="emailFb" id="emailFb" value="" style="display:none" />
+            <input name="imgFb" id="imgFb" value="" style="display:none" />
+            <button type="button" onclick="fbLogin();" class="btn-facebook" style="background-color: #3b5998;"><span class="fa fa-facebook" style="width: 40px; line-height: 25px; font-size: 1.6em; text-align: center; border-right: 1px solid #373737; float: left; margin-right: 15px"></span>Đăng nhập bằng Facebook</button>
+        </label>
+        <label style="margin-top: 7%;">
+            <button type="button" onclick="" class="btn-facebook" style="background-color: #dd4b39; "><span class="fa fa-google" style="width: 40px; line-height: 25px; font-size: 1.6em; text-align: center; border-right: 1px solid #373737; float: left; margin-right: 15px"></span>Đăng nhập bằng Gmail</button>
+        </label>
+        <a style="text-align: center; display: block; margin-top: 5%;">------------Chưa có tài khoản------------</a>
+        <label style="margin-top: 3%;">
+            <a onclick="mosign()" style="text-align: center; display: block;font-size:larger;color:aqua;">Đăng ký</a>
+        </label>
+    </fieldset>
+</form>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '482579087165821',
+            xfbml: true,
+            version: 'v15.0'
+        });
+        FB.AppEvents.logPageView();
+
+        FB.getLoginStatus(function (response) {
+            if (response.status === 'connected') {
+                getFbUserData();//lam sao mà submit 1 lần thoi 
+            }
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    function fbLogin() {
+        FB.login(function (response) {
+            if (response.authResponse) {
+                getFbUser();
+            } else {
+                document.getElementById('status').innerHTML = 'Người dùng đã hủy đăng nhập hoặc không ủy quyền đầy đủ.';
+            }
+        }, { scope: 'email' });
+    }
+
+    function getFbUserData() {
+        FB.api('/me', { locale: 'en_US', fields: 'id,first_name,last_name,email,picture' },
+            function (response) {
+                document.getElementById("idFb").value = response.id;
+                document.getElementById("tenFb").value = response.first_name + response.last_name;
+                document.getElementById("emailFb").value = response.email;
+                document.getElementById("imgFb").value = response.picture.data.url;
+                });
+    }
+
+    function getFbUser() {
+        FB.api('/me', { locale: 'en_US', fields: 'id,first_name,last_name,email,picture' },
+            function (response) {
+                document.getElementById("idFb").value = response.id;
+                document.getElementById("tenFb").value = response.first_name + response.last_name;
+                document.getElementById("emailFb").value = response.email;
+                document.getElementById("imgFb").value = response.picture.data.url;
+                document.getElementById("myF").submit();
+            });
+    }
+   
+</script>
+<style>
+    .btnlogin {
+        margin-top: 2%;
+        margin-bottom: 3%;
+        padding: 8px 20px;
+        box-shadow: rgb(0 0 0 / 40%) 0px 0px 10px;
+        background: linear-gradient(to right, #520c7d, #1b9fe6);
+        border: none;
+        font-size: 14px;
+        border-radius: 15px;
+        text-decoration: none;
+        color: #ffff;
+        margin-left: 21%;
+        width: 60%;
+    }
+
+    .btn-facebook {
+        line-height: 25px;
+        text-align: left;
+        color: #fff;
+        border: none;
+        height: 150%;
+        width: 80%;
+        border-radius: 5px;
+        box-shadow: rgb(0 0 0 / 40%) 0px 0px 10px;
+    }
+
+        .btn-facebook:hover {
+            color: #fff;
+            background-color: #2d4373;
+            border-color: rgba(0,0,0,0.2)
+        }
+</style>

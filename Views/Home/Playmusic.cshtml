@@ -1,0 +1,102 @@
+﻿@using MusicCloud.Models
+@model IEnumerable<MusicCloud.Models.Baihat>
+@{
+    Baihat bh = (Baihat)Session["baihat"];
+    User user = (User)Session["taikhoan"];
+    if (user == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    }
+
+}
+@section login{
+    @RenderPage("~/Views/Home/Login.cshtml")
+}
+@section sign{
+    @RenderPage("~/Views/Home/Sign.cshtml")
+}
+<html lang="en">
+<head>
+    <link href="~/Content/playmusic.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="boc">
+        <div class="music">
+            <div class="music-img active">
+                <img src="@bh.imgSong">
+            </div>
+            <h3 id="name" class="music-name">@bh.tenSong</h3>
+            <div class="ten">
+                <a href="/Home/DetailsNghesi/@bh.ngheDanh">@bh.ngheDanh</a>
+            </div>
+            <div class="like-tym">
+                <i class="fa-solid nut-down fa-download" title="tải"></i>
+                <i class="fa-solid nut-tym fa-heart-circle-plus" title="yêu thích"></i>
+                <i class="fa-solid nut-share fa-share-nodes" title="chia sẻ"></i>
+            </div>
+            <input type="range" name="range" id="range" class="range">
+            <!-- nhac -->
+            <audio src="@bh.link" id="nhac" ></audio>
+            <!-- end nhac -->
+            <div class="thoigian">
+                <div class="thoigian-Conlai">
+                    -00:00
+                </div>
+                <div class="thoigian-Baihat">
+                    00:00
+                </div>
+            </div>
+            <div class="nut">
+                <div class="ngau-nhien" title="phát nhạc ngẫu nhiên">
+                    <i class="fa-solid fa-shuffle"></i>
+                </div>
+                <i class="fa-solid nut-lui fa-backward" title="lùi lại"></i>
+
+                <div class="nut-play">
+                    <div class="play-inner">
+                        <i class="fa-solid play fa-play"></i>
+                    </div>
+                </div>
+
+                <i class="fa-solid nut-tien fa-forward" title="chuyển nhạc"></i>
+
+                <div class="lap-lai" title="Lặp lại 1 lần">
+                    <i class="fa-solid fa-repeat"></i>
+                </div>
+            </div>
+        </div>
+        <div class="playlist">
+            <div class="container">
+                <div class="playlist_wrapper">
+                    <h3><i class="fa-solid fa-record-vinyl"></i>  BÀI HÁT</h3>
+                    <div class="playlist_oveflow">
+                        @foreach (var item in Model)
+                        {
+                            <div class="menu_song" onclick="location.href='/Home/Playmusic/@item.idSong'">
+                                <li class="song_item">
+                                    <span><i class="fa-solid fa-music"></i></span>
+                                    <a><img src=@Url.Content(@item.imgSong) alt=""></a>
+                                    <h5>
+                                        @item.tenSong<br>
+                                        <a class="song_name_ns" href="/Home/DetailsNghesi/@item.ngheDanh">@item.ngheDanh</a>
+                                    </h5>
+                                    <a class="aa"><i class="fa-regular fa-circle-play"></i></a>
+                                    <p style="display:none;">@item.link</p>
+                                </li>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/playmusic.js"></script>
+</body>
+</html>
+<script>
+    const musics = @Html.Raw(Json.Encode(Model));
+</script>

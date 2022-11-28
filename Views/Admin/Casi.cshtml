@@ -1,0 +1,115 @@
+﻿@using PagedList.Mvc;
+@model PagedList.PagedList<MusicCloud.Models.Singer>
+
+@{
+    Layout = "~/Views/Shared/_LayoutAd.cshtml";
+}
+
+<button class="btn btn-success" onclick="location.href='/Admin/CreateUpdateCasi/0'"><span class="glyphicon glyphicon-plus"></span>Thêm mới</button>
+<p></p>
+<table class="table">
+    <tr>
+        <th>
+            Tên ca sĩ
+        </th>
+        <th>
+            Nghệ danh
+        </th>
+        <th>
+            Ảnh
+        </th>
+        <th>
+            Ngày sinh
+        </th>
+        <th>
+            Quốc gia
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="vertical-align: middle">
+                @Html.DisplayFor(modelItem => item.tenCasi)
+            </td>
+            <td style="vertical-align: middle">
+                @Html.DisplayFor(modelItem => item.ngheDanh)
+            </td>
+            <td style="vertical-align: middle">
+                <img src="@Url.Content(@item.imgCasi)" style="width:120px" />
+            </td>
+            <td style="vertical-align: middle">
+                @Convert.ToDateTime(item.birthday).ToString("dd/MM/yyyy")
+            </td>
+            <td style="vertical-align: middle">
+                @Html.DisplayFor(modelItem => item.quocGia)
+            </td>
+            <td style="vertical-align: middle">
+                <button class="btn btn-warning" onclick="location.href='/Admin/CreateUpdateCasi/@item.idCasi'"><span class="glyphicon glyphicon-edit"></span></button>
+                <button class="btn btn-info" onclick="location.href='/Admin/DetailsCasi/@item.idCasi'"><span class="glyphicon glyphicon-info-sign"></span></button>
+                @*<button class="btn btn-danger" onclick="location.href='/Admin/DeleteCasi/@item.idCasi'"><span class="glyphicon glyphicon-trash"></span></button>*@
+            </td>
+        </tr>
+    }
+</table>
+<div class="page">
+    <ul id="pagi">
+        @Html.PagedListPager(Model, page => Url.Action("Casi", new { page = page }))
+    </ul>
+</div>
+<style>
+    td, th {
+        text-align: center;
+    }
+
+    .page {
+        text-align: center;
+        font-size: 1em;
+        font-weight: normal;
+        border-bottom: 0px;
+        margin: 30px 0
+    }
+
+    #pagi {
+        margin: 0;
+        padding: 0;
+        text-align: center
+    }
+
+        #pagi li {
+            display: inline
+        }
+
+            #pagi li a {
+                display: inline-block;
+                text-decoration: none;
+                padding: 5px 10px;
+                color: #000
+            }
+
+    .topnav {
+        margin-bottom: 10px;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 10px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+            .topnav a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+
+            .topnav a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+</style>

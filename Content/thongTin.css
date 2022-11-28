@@ -1,0 +1,90 @@
+﻿* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #2D0149;
+}
+
+ul {
+    list-style: none; /*xóa dấu chấm*/
+}
+
+a {
+    text-decoration: none; /*bỏ gạch chân*/
+    color: black;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.app-content {
+    display: flex;
+    width: 150px;
+    height: 500px;
+    padding: 20px 10px;
+    border: none;
+}
+
+.tabs {
+}
+
+    .tabs li {
+        margin-left: 15px;
+        margin-right: 15px;
+        margin-bottom: 15px;
+        cursor: pointer;
+        padding: 10px 20px;
+        color: white;
+        width: 120px;
+        border-radius: 5px;
+        border: none;
+        transition: .4s;
+        background-color: #2D0149;
+        text-align: center;
+    }
+
+        .tabs li.active {
+            background-color: darkgrey;
+        }
+
+.tab-content {
+    display: none;
+    position: relative;
+}
+
+    .tab-content.active {
+        display: block;
+    }
+
+.container {
+    width: 75%;
+    height: 500px;
+    margin: 100px auto;
+    background-color: #ffff;
+    border-radius: 15px;
+}
+
+.container_gt, .container_lh {
+    margin: 100px 50px;
+    width: 900px;
+    height: auto;
+}
+
+.name {
+    color: black;
+    font-size: 25px;
+}
+
+    .name p {
+        margin-top: 10px;
+    }
+
+    .name h5 {
+        margin-top: 10px;
+    }

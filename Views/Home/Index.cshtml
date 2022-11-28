@@ -1,0 +1,649 @@
+﻿@using MusicCloud.Models
+@model ViewModel
+@{
+    User user = (User)Session["taikhoan"];
+    Baihat bh = (Baihat)Session["baihat"];
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section login{
+    @RenderPage("~/Views/Home/Login.cshtml")
+}
+@section sign{
+    @RenderPage("~/Views/Home/Sign.cshtml")
+}
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/d9876ed7d9.js" crossorigin="anonymous"></script>
+    <link href="~/Content/trangchu.css" rel="stylesheet" />
+    <link href="~/Content/trangchu_mobile.css" rel="stylesheet" />
+</head>
+<body>
+    <main id="main">
+        <!-- ảnh chạy-->
+        <div class="wrapper">
+            <div class="previ btn">
+                <button><i class="fa-solid fa-chevron-left"></i></button>
+            </div>
+            <div class="next btn">
+                <button><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <div class="slide active">
+                <img src="~/Image/trangchu-1.jpg" alt="anhtrangchu" />
+            </div>
+            <div class="slide">
+                <img src="~/Image/trangchu-2.jpg" alt="anhtrangchu" />
+            </div>
+            <div class="slide">
+                <img src="~/Image/trangchu-3.jpg" alt="anhtrangchu" />
+            </div>
+            <div class="slide">
+                <img src="~/Image/trangchu-5.jpg" alt="anhtrangchu" />
+            </div>
+            <div class="slide">
+                <img src="~/Image/trangchu-6.jpg" alt="anhtrangchu" />
+            </div>
+            <div class="slide">
+                <img src="~/Image/trangchu-8.jpg" alt="anhtrangchu" />
+            </div>
+        </div>
+        <!-- end ảnh chạy-->
+        <!-- mobile -->
+        <div class="mobile-nav">
+        </div>
+        <!-- end mobile -->
+        @if (bh == null) { }
+        else
+        {
+            <div class="playmusic">
+                <div class="nut">
+                    <div class="music-img active">
+                        <img class="img-circle" src="@bh.imgSong" alt="">
+                    </div>
+                    <div class="ngau-nhien" title="phát nhạc ngẫu nhiên">
+                        <i class="fa-solid fa-shuffle"></i>
+                    </div>
+                    <i class="fa-solid nut-lui fa-backward" title="lùi lại"></i>
+
+                    <div class="nut-play">
+                        <div class="play-inner">
+                            <i class="fa-solid play fa-play"></i>
+                        </div>
+                    </div>
+
+                    <i class="fa-solid nut-tien fa-forward" title="chuyển nhạc"></i>
+
+                    <div class="lap-lai" title="Lặp lại 1 lần">
+                        <i class="fa-solid fa-repeat"></i>
+                    </div>
+                    <h3 class="music-name">
+                        @bh.tenSong
+                    </h3>
+                    <audio src="@bh.link" id="nhac"></audio>
+                </div>
+            </div>
+        }
+        <div class="tranggiua">
+            <!-- Gợi ý cho bạn -->
+            <div class="tranggiua-boc">
+                <h2>Gợi ý cho bạn</h2>
+                <ul class="boc-left">
+                    @foreach (var item in Model.Baihats.Take(3))
+                    {
+                        <li><a href="~/Home/Playmusic/@item.idSong"><img class="container-anh" src="@Url.Content(item.imgSong)" alt=""></a></li>
+                    }
+                    <li class="cap"><p>Thưởng thức ngay <br> những ca khúc phù hợp</p></li>
+                </ul>
+
+                <div class="boc-right">
+                    <button><i class="fa-solid fa-play"></i></button>
+                </div>
+            </div>
+            <!-- end Gợi ý cho bạn -->
+            <!-- Bài hát , album -->
+            <div class="tranggiua-0">
+                <div class="container">
+                    <div class="products-title">
+                        <h2>Mới phát hành</h2>
+                    </div>
+                    <div class="app-content">
+                        <ul class="tabs">
+                            <li data-target="#content_1">
+                                <p>Bài hát</p>
+                            </li>
+                            <li data-target="#content_2">
+                                <p>Album</p>
+                            </li>
+                        </ul>
+                        <div>
+                            <!-- BÀI HÁT -->
+                            <div class="tab-content active" id="content_1">
+                                @if (user == null)
+                                {
+                                    <a class="All-baihat" id="content_1" href="/Home/Baihat/0">Tất cả <i class="fa-solid fa-chevron-right"></i></a>
+                                }
+                                else
+                                {
+                                    <a class="All-baihat" id="content_1" href="/Home/Baihat/@user.idUser">Tất cả <i class="fa-solid fa-chevron-right"></i></a>
+                                }
+                                <div class="container-baihat">
+                                    <!--hàng trên  -->
+                                    <div class="Baihat-list">
+                                        <!---->
+                                        @foreach (var item in Model.Baihats.Take(3))
+                                        {
+                                            <div class="Baihat">
+                                                <div class="Baihat-img">
+                                                    <a href="~/Home/Playmusic/@item.idSong">
+                                                        <img src="@Url.Content(@item.imgSong)" alt="">
+                                                        <i class="fa-solid fa-play"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="Baihat-content">
+                                                    <h3 class="Baihat-name">
+                                                        <a href="~/Home/Playmusic/@item.idSong">@item.tenSong</a>
+                                                    </h3>
+                                                    <a href="/Home/DetailsNghesi/@item.ngheDanh"><p>@item.ngheDanh</p></a>
+                                                    <p class="day">Lượt thích: @item.countLike</p>
+                                                </div>
+                                            </div>
+                                        }
+                                        <!---->
+                                    </div>
+                                    <div class="Baihat-list">
+                                        @foreach (var item in Model.Baihats.Skip(3).Take(3))
+                                        {
+                                            <div class="Baihat">
+                                                <div class="Baihat-img">
+                                                    <a href="~/Home/Playmusic/@item.idSong">
+                                                        <img src="@Url.Content(@item.imgSong)" alt="">
+                                                        <i class="fa-solid fa-play"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="Baihat-content">
+                                                    <h3 class="Baihat-name">
+                                                        <a href="~/Home/Playmusic/@item.idSong">@item.tenSong</a>
+                                                    </h3>
+                                                    <a href="/Home/DetailsNghesi/@item.ngheDanh"><p>@item.ngheDanh</p></a>
+                                                    <p class="day">Lượt thích: @item.countLike</p>
+                                                </div>
+                                            </div>
+                                        }
+                                        <!---->
+                                    </div>
+                                    <div class="Baihat-list">
+                                        @foreach (var item in Model.Baihats.Skip(6).Take(3))
+                                        {
+                                            <div class="Baihat">
+                                                <div class="Baihat-img">
+                                                    <a href="~/Home/Playmusic/@item.idSong">
+                                                        <img src="@Url.Content(@item.imgSong)" alt="">
+                                                        <i class="fa-solid fa-play"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="Baihat-content">
+                                                    <h3 class="Baihat-name">
+                                                        <a href="~/Home/Playmusic/@item.idSong">@item.tenSong</a>
+                                                    </h3>
+                                                    <a href="/Home/DetailsNghesi/@item.ngheDanh"><p>@item.ngheDanh</p></a>
+                                                    <p class="day">Lượt thích: @item.countLike</p>
+                                                </div>
+                                            </div>
+                                        }
+                                        <!---->
+                                    </div>
+                                    <!-- all bai hat mobile -->
+                                    <div class="All-baihat-mobile">
+                                        <a href="">
+                                            <h4>Tất cả <i class="fa-solid fa-chevron-right"></i>....</h4>
+                                        </a>
+                                    </div>
+                                    <!-- end bai hat all mobile -->
+                                    <!-- end hàng trên  -->
+                                </div>
+                            </div>
+
+                            <!-- ALBUM -->
+                            <div class="tab-content" id="content_2">
+                                <a class="All-album" id="content_1" href="/Home/Album">Tất cả <i class="fa-solid fa-chevron-right"></i></a>
+                                <div class="container-album">
+                                    <!--hàng trên  -->
+                                    <div class="album-list">
+                                        <!---->
+                                        @foreach (var item in Model.Albums.Take(3))
+                                        {
+                                            <div class="album-list">
+                                                <!---->
+                                                <div class="album">
+                                                    <div class="album-img" onclick="location.href='/Home/DetailsAlbum/@item.idAlbum'">
+                                                        <a href="/Home/DetailsAlbum/@item.idAlbum">
+                                                            <img src="@Url.Content(@item.imgAlbum)">
+                                                            <i class="fa-solid fa-play"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="album-content">
+                                                        <h3 class="album-name">
+                                                            <a href="/Home/DetailsAlbum/@item.idAlbum">@item.tenAlbum</a>
+                                                        </h3>
+                                                        <a><p>@item.tenCasi</p></a>
+                                                    </div>
+                                                </div>
+                                                <!---->
+                                            </div>
+                                        }
+                                        <!---->
+                                    </div>
+                                    <!--hàng dưới  -->
+                                    <div class="album-list" style="margin-top:7%">
+                                        <!---->
+                                        @foreach (var item in Model.Albums.Skip(3).Take(3))
+                                        {
+                                            <div class="album-list">
+                                                <!---->
+                                                <div class="album">
+                                                    <div class="album-img" onclick="location.href='/Home/DetailsAlbum/@item.idAlbum'">
+                                                        <a href="/Home/DetailsAlbum/@item.idAlbum">
+                                                            <img src="@Url.Content(@item.imgAlbum)">
+                                                            <i class="fa-solid fa-play"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="album-content">
+                                                        <h3 class="album-name">
+                                                            <a href="/Home/DetailsAlbum/@item.idAlbum">@item.tenAlbum</a>
+                                                        </h3>
+                                                        <a><p>@item.tenCasi</p></a>
+                                                    </div>
+                                                </div>
+                                                <!---->
+                                            </div>
+                                        }
+                                        <!---->
+                                    </div>
+                                    <!-- all album mobile -->
+                                    <div class="All-album-mobile">
+                                        <a href="">
+                                            <h4>Tất cả <i class="fa-solid fa-chevron-right"></i>....</h4>
+                                        </a>
+                                    </div>
+                                    <!-- end all album mobile -->
+                                </div>
+                                <!-- END ALBUM -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end Bài hát , album -->
+            <!-- Xem gi Hom nay -->
+            <div class="tranggiua-1 section">
+                <div class="container">
+                    <div class="products-title">
+                        <h2>Nghe gì hôm nay</h2>
+                    </div>
+                    <div class="product-list">
+                        <!---->
+                        @foreach (var item in Model.Theloais.Take(5))
+                        {
+                            <div class="product-item">
+                                <div class="product-img" onclick="location.href='/Home/Theloai/@item.idTheloai'">
+                                    <img src="@Url.Content(@item.imgLoai)">
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">
+                                        <a href="/Home/Theloai/@item.idTheloai">@item.tenLoai</a>
+                                    </h3>
+                                    <a class="product-category">
+                                        V.A
+                                    </a>
+                                    <a><i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        }
+                        <!---->
+                    </div>
+                </div>
+            </div>
+            <!-- end Xem gi Hom nay -->
+            <!-- Top 100 -->
+            <div class="tranggiua-2">
+                <div class="container">
+                    <div class="products-title">
+                        <h2>Top 100</h2>
+                        <a href="/Home/Top100/0">Tất cả <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+                    <div class="product-list">
+                        <!---->
+                        @foreach (var item in Model.Chudes.Take(5))
+                        {
+                            <div class="product-item">
+                                <div class="product-img" onclick="location.href='/Home/Top100/@item.idChude'">
+                                    <a><img src="@Url.Content(@item.imgChude)"></a>
+                                </div>
+                                <div class="product-content">
+                                    <h3 class="product-name">
+                                        <a href="/Home/Top100/@item.idChude">@item.tenChude</a>
+                                    </h3>
+                                    <a><i class="fa-solid fa-play"></i></a>
+                                </div>
+                            </div>
+                        }
+                        <!---->
+                    </div>
+                </div>
+            </div>
+            <!-- end Top 100 -->
+            <!-- Nghệ sĩ -->
+
+            <div class="tranggiua-3">
+                <div class="container-nghesi">
+                    <div class="products-title">
+                        <h2>Nghệ sĩ</h2>
+                        <a href="/Home/Nghesi">
+                            Tất cả
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </a>
+                    </div>
+                    <div class="product-list-nghesi">
+                        <!---->
+                        @foreach (var item in Model.Singers.Take(5))
+                        {
+                            <div class="product-item-nghesi">
+                                <div class="product-anhnghesi">
+                                    <a><img src="@Url.Content(@item.imgCasi)" onclick="location.href='/Home/DetailsNghesi/@item.ngheDanh'"></a>
+                                    <div class="product-content-nghesi">
+                                        <h3 class="product-name">
+                                            <a href="/Home/DetailsNghesi/@item.ngheDanh">@item.ngheDanh</a>
+                                        </h3>
+                                        @if (user == null)
+                                        {
+                                            <button id="gone" class="btn-nghesi" type="button" onclick="momess()">Quan tâm</button>
+                                        }
+                                        else
+                                        {
+                                            <form action="/Home/Quantam/@user.idUser" method="post">
+                                                <input name="idCasi" style="display:none;" value="@item.idCasi" />
+                                                <input class="nghesi" type="submit" value="Quan tâm" />
+                                            </form>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <!---->
+                    </div>
+                </div>
+            </div>
+            <!-- End Nghệ sĩ -->
+            <!-- Nhạc mới -->
+            <div class="tranggiua-4">
+                <div class="container">
+                    <div class="nhacmoi-title">
+                        <h2>Nhạc mới</h2>
+                    </div>
+                    <div class="nhacmoi-list">
+                        <!---->
+                        <div class="nhacmoi">
+                            <div class="nhacmoi-img">
+
+                                <a href="">
+                                    <img src="" alt="">
+                                    <i class="fa-solid fa-play"></i>
+                                </a>
+                            </div>
+                            <div class="nhacmoi-content">
+                                <h3 class="nhacmoi-name">
+                                    <a href="">Nơi này có anh</a>
+                                </h3>
+                                <a href=""><p>Sơn tùng m-tp</p></a>
+                                <div class="thoigian-xephang">
+                                    <span class="xephang">#2</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!---->
+                        <div class="nhacmoi">
+                            <div class="nhacmoi-img">
+
+                                <a href="">
+                                    <img src="" alt="">
+                                    <i class="fa-solid fa-play"></i>
+                                </a>
+                            </div>
+                            <div class="nhacmoi-content">
+                                <h3 class="nhacmoi-name">
+                                    <a href="">Nơi này có anh</a>
+                                </h3>
+                                <a href=""><p>Sơn tùng m-tp</p></a>
+                                <div class="thoigian-xephang">
+                                    <span class="xephang">#1</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!---->
+                        <div class="nhacmoi">
+                            <div class="nhacmoi-img">
+
+                                <a href="">
+                                    <img src="" alt="">
+                                    <i class="fa-solid fa-play"></i>
+                                </a>
+                            </div>
+                            <div class="nhacmoi-content">
+                                <h3 class="nhacmoi-name">
+                                    <a href="">Nơi này có anh</a>
+                                </h3>
+                                <a href=""><p>Sơn tùng m-tp</p></a>
+                                <div class="thoigian-xephang">
+                                    <span class="xephang">#3</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!---->
+                    </div>
+                </div>
+            </div>
+            <!-- end nhạc mới -->
+        </div>
+    </main>
+    <script src="~/Scripts/trangchu.js"></script>
+</body>
+</html>
+
+<style>
+    .nghesi {
+        margin-top: 10px;
+        padding: 8px 20px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+        background: linear-gradient(to right, #2D0149, #1d012f);
+        border: none;
+        font-size: 14px;
+        border-radius: 15px;
+        color: aquamarine;
+    }
+
+        .nghesi:hover {
+            color: fuchsia;
+        }
+
+    .playmusic {
+        width: 85.1%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        background-image: linear-gradient(to right, #1b9fe6, #520c7d, #1b9fe6);
+        position: fixed;
+        z-index: 1;
+        left: 14.8%;
+        top: 92%;
+    }
+
+    .nut {
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0 40px;
+    }
+
+    .play {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(to right, #520c7d, #1b9fe6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 0 0 2px #ffff;
+        font-size: 20px;
+        color: #ffff;
+    }
+
+    .nut-lui,
+    .nut-tien,
+    .ngau-nhien,
+    .lap-lai {
+        cursor: pointer;
+    }
+
+    #range {
+        -webkit-appearance: none;
+        width: 100%;
+        background-color: transparent;
+    }
+
+        #range::-webkit-slider-runnable-track {
+            height: 5px;
+            width: 100%;
+            background: linear-gradient(to right, #520c7d, #1b9fe6);
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        #range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            background-color: black;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px #ffff;
+            margin-top: -2px;
+        }
+
+    .img-circle {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 5px double cornflowerblue;
+    }
+</style>
+<script>
+    const nhacImg = document.querySelector('.music-img img');
+    const nhacName = document.querySelector('.music-name')
+    let lapLainhac = false;
+    let random = false;
+    let indexNhac = 0;
+    let laplaiCount = 0;
+    const playBtn = document.querySelector('.play-inner');
+    const playLapLai = document.querySelector('.lap-lai');
+    const playRandom = document.querySelector('.ngau-nhien');
+    const prev = document.querySelector('.nut-lui');
+    const next = document.querySelector('.nut-tien');
+    let isPlaying = true;
+    let timer;
+    const musics = @Html.Raw(Json.Encode(Model.Baihats));
+
+    playLapLai.addEventListener("click", function () {
+
+        if (lapLainhac) {
+            lapLainhac = false;
+            playLapLai.removeAttribute("style");
+        }
+        else {
+            lapLainhac = true;
+            playLapLai.style.color = "#1b9fe6";
+        }
+    });
+    playRandom.addEventListener("click", function () {
+
+        if (random) {
+            random = false;
+            playRandom.removeAttribute("style");
+        }
+        else {
+            random = true;
+            playRandom.style.color = "rgb(76 27 136)";
+            let musicIndex = Math.floor((Math.random() * musics.length) + 1);
+            init(musicIndex);
+            playPause();
+        }
+    });
+
+    //Chuyen nhac
+    next.addEventListener('click', function () {
+        changeNhac(1);
+    });
+    prev.addEventListener('click', function () {
+        changeNhac(-1);
+    });
+
+    // nhac chạy xong .chuyển bài 
+    nhac.addEventListener('ended', handleEndedSong);
+    function handleEndedSong() {
+        laplaiCount++;
+        if (lapLainhac && laplaiCount === 1) {
+            isPlaying = true;
+            playPause();
+        }
+        else {
+            changeNhac(1);
+        }
+    }
+    // end chuyển bài 
+
+    function changeNhac(dir) {
+        if (dir === 1) {
+            //next
+            playRandom.removeAttribute("style");
+            indexNhac++;
+            if (indexNhac >= musics.length) {
+                indexNhac = 0;
+            }
+            isPlaying = true;
+        } else if (dir === -1) {
+            //prev
+            indexNhac--;
+            if (indexNhac < 0) {
+                indexNhac = musics.length - 1;
+            }
+            isPlaying = true;
+        }
+        init(indexNhac);
+        playPause();
+    }
+
+    playBtn.addEventListener('click', playPause);
+    function playPause() {
+        if (isPlaying) {
+            nhac.play();
+            playBtn.innerHTML = `<i class="fa-solid play fa-pause"></i>`;
+            isPlaying = false;
+        }
+        else {
+            nhac.pause();
+            playBtn.innerHTML = ` <i class="fa-solid play fa-play"></i>`;
+            isPlaying = true;
+        }
+    }
+
+    //nhét dữ liệu vào thẻ
+    function init(indexNhac) {
+        nhac.setAttribute("src", `${musics[indexNhac].link}`);
+        nhacImg.setAttribute("src", musics[indexNhac].imgSong);
+        nhacName.textContent = musics[indexNhac].tenSong;
+    }
+    
+    function momess() {
+        document.getElementById("openmess").style.display = "block";
+    }
+</script>

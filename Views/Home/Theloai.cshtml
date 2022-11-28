@@ -1,0 +1,91 @@
+﻿@using MusicCloud.Models
+@model IEnumerable<MusicCloud.Models.Theloai>
+@{
+    User user = (User)Session["taikhoan"];
+    List<Baihat> bh = (List<Baihat>)Session["tl"];
+    if (user == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    }
+}
+@section login{
+    @RenderPage("~/Views/Home/Login.cshtml")
+}
+@section sign{
+    @RenderPage("~/Views/Home/Sign.cshtml")
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/playlist.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- playlist -->
+    <div class="playlist_ns">
+        <div class="container">
+            <div class="products-title">
+                <h2>👑 Thể loại</h2>
+            </div>
+            <div class="product-list">
+                <!---->
+                @foreach (var item in Model)
+                {
+                    <div class="product-item" onclick="location.href='/Home/Theloai/@item.idTheloai'">
+                        <img src="@item.imgLoai" style="height: auto; border-radius: 15px;">
+                        <div class="product-content">
+                            <h3 class="product-name" style="width:unset">🔊 @item.tenLoai</h3>
+                            <a><i class="fa-solid fa-play"></i></a>
+                        </div>
+                    </div>
+                }
+                <!---->
+            </div>
+        </div>
+    </div>
+    <!-- bai Hat -->
+    <div class="playlist">
+        <div class="container">
+            <div class="playlist_wrapper">
+                <h2>🎵 Bài hát</h2>
+                @if (bh == null)
+                {
+                    <div class="playlist_oveflow">
+                        <div class="menu_song">
+                            <h2 style="text-align:center">
+                                Hãy chọn một thể loại 😀
+                            </h2>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    foreach (var item in bh)
+                    {
+                        <div class="playlist_oveflow" onclick="location.href='/Home/Playmusic/@item.idSong'">
+                            <div class="menu_song">
+                                <li class="song_item">
+                                    <span><i class="fa-solid fa-music"></i></span>
+                                    <a><img src="@item.imgSong" alt=""></a>
+                                    <h5>
+                                        @item.tenSong<br>
+                                        <div class="wrapper">
+                                            <a class="song_name_ns" href="">@item.ngheDanh</a>
+                                        </div>
+                                    </h5>
+                                    <i class="fa-solid nut_tym fa-heart-circle-plus" title="yêu thích"></i>
+                                    <a class="aa" href=""><i class="fa-regular fa-circle-play"></i></a>
+                                </li>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    @*<script src="~/Scripts/playlist.js"></script>*@
+</body>
+</html>

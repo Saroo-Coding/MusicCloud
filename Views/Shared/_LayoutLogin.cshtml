@@ -1,0 +1,129 @@
+﻿@using MusicCloud.Models
+@{
+    User user = (User)Session["taikhoan"];
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d9876ed7d9.js" crossorigin="anonymous"></script>
+    <link href="~/Content/header_login.css" rel="stylesheet" />
+    <link href="~/Content/header_login_mobile.css" rel="stylesheet" />
+    <link rel="icon" href="~/Image/logo.png" type="image/x-icon" />
+    <title>Music cloud</title>
+</head>
+<body>
+    <header>
+        <section>
+            <div style="display:none;">
+                @RenderSection("login", false)
+            </div>
+            <div style="display:none;">
+                @RenderSection("sign", false)
+            </div>
+            <div class="menu_top">
+                <div class="container">
+                    <div class="name" @*onclick="location.href=''"*@>
+                        <h2 class="name_1">Music</h2> <h2 class="name_2"> Cloud</h2>
+                    </div>
+                    <div class="menu_click">
+                        <ul class="menu_links">
+                            <li class="link"><a href="/Home/Playlist/@user.idUser"><i class="fa-solid fa-user-large"></i>Cá nhân</a></li>
+                            <li class="link"><a href="/Home/Qtam/@user.idUser"><i class="fa-solid fa-id-card"></i>Quan tâm</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- thanh trắng ngang -->
+            <div class="border_bottom"></div>
+            <!-- end thanh trắng ngang -->
+
+            <div class="menu_bottom">
+                <div class="container">
+                    <div class="menu_click">
+                        <ul class="menu_link">
+                            <li class="link"><a href="/Home/Baihat/@user.idUser"><i class="fa-solid fa-music"></i>Nhạc mới</a></li>
+                            <li class="link"><a href="/Home/Theloai/0"><i class="fa-solid fa-icons"></i>Thể loại</a></li>
+                            <li class="link"><a href="/Home/Top100/0"><i class="fa-regular fa-star"></i>Top 100</a></li>
+                        </ul>
+                        <ul class="menu_links">
+                            <h3>Thư viện <i class="fa-solid fa-angle-down"></i></h3>
+                            <li class="link"><a href="/Home/Playlist/@user.idUser"><i class="fa-solid icon_1 fa-radio"></i>Bài hát</a></li>
+                            <li class="link"><a href="/Home/Playlist/@user.idUser"><i class="fa-brands icon_2 fa-playstation"></i>Playlist</a></li>
+                            <li class="link"><a href=""><i class="fa-solid icon_3 fa-clock-rotate-left"></i>Gần đây</a></li>
+                            <li class="link"><a href=""><i class="fa-solid icon_4 fa-arrow-down-z-a"></i>Nhạc tải lên</a></li>
+                            <li class="links">
+                                <p>Nghe nhạc không quảng cáo cùng kho nhạc VIP</p>
+                                <button class="button_NangCapVip"><a href="#">Nâng cấp Vip</a></button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="logo_nhom">
+                    @*<img class="container-anh" src="/trangchu/img/logonhom.png" alt="logo nhóm">*@
+                </div>
+            </div>
+
+        </section>
+        <div class="menu_timkiem">
+            <div class="box">
+                <div class="menu_timkiems">
+                    <span class="icon"><i class="fa fa-search"></i></span>
+                    <input type="search" id="search" placeholder="Tìm kiếm nghệ sĩ, bài hát,..." />
+                </div>
+            </div>
+            <div style="display: flex; align-items: center;margin-right:1.5%;">
+                <a><b>Xin chào:</b> @user.name</a>
+            </div>
+            <div class="menu_user">
+                <div class="user_vip">
+                    <a class="click_vip" href=""><i class="fa-regular fa-gem" title="Nâng cấp Vip"></i></a>
+                </div>
+                <div class="users">
+                    <!-- ảnh đăng nhập -->
+                    <div class="click_user">
+                        <img src="@Url.Content(@user.avatar)" alt="Ảnh user">
+                        <div class="click-navigation">
+                            <ul>
+                                <li class="clicks"><a href="/Home/Vip" target="_blank"><i class="fa-regular fa-gem"></i>Nâng cấp Vip</a></li>
+                                <li class="clicks"><a href="/Home/Thongtin" target="_blank"><i class="fa-solid icon_GT fa-exclamation"></i>Giới thiệu</a></li>
+                                <li class="clicks"><a onclick="fbLogout()" href="~/Home/Index"><i class="fa-regular fa-share-from-square"></i>Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="noidung">
+            @RenderBody()
+        </div>
+    </header>
+    <script src="~/Scripts/header_login.js"></script>
+    <footer>
+        @*@RenderSection("footer", false)*@
+    </footer>
+</body>
+</html>
+<script>
+    function fbLogout() {
+        FB.logout(function () {
+        });
+    }
+</script>
+<style>
+    .noidung {
+        margin-top: 5%;
+        position: absolute;
+        margin-left: 14.8%;
+        width: 85%;
+        overflow: auto;
+        height: 89.2%;
+    }
+
+        .noidung::-webkit-scrollbar {
+            display: none;
+        }
+</style>

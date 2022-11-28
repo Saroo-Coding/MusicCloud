@@ -1,0 +1,217 @@
+﻿@using PagedList.Mvc;
+@model PagedList.PagedList<MusicCloud.Models.Theloai>
+@{
+    Layout = "~/Views/Shared/_LayoutAd.cshtml";
+}
+
+@*<h4 style="color:red"><b>Chú ý:</b> Không là mặc định cho những bài chưa có thể loại nên ko được sửa nó</h4>*@
+<div class="topnav">
+    <a href="@Url.Action("Baihat","Admin")">Bài hát</a>
+    <a href="@Url.Action("Chude","Admin")">Chủ đề</a>
+    <a class="active" onclick="changeIcon(this)"><span class="glyphicon glyphicon-plus"></span> Thêm thể loại</a>
+    <a href="@Url.Action("Album","Admin")">Album</a>
+</div>
+
+<div id="myDIV">
+    <form action="/Admin/Theloai/0" enctype="multipart/form-data" method="post">
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <hr style="margin:unset" />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2" style="color:red;font-size:large;">Thêm mới</label>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Tên thể loại:</label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" name="ten" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Ảnh bìa:</label>
+                <div class="col-md-10">
+                    <input type="file" name="file" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-success" style="margin-bottom:10px" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="myEdit">
+    <form id="myForm" action="/Admin/Theloai" enctype="multipart/form-data" method="post">
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <hr style="margin:unset" />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2" style="color:red;font-size:large;">Chỉnh sửa</label>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Tên thể loại:</label>
+                <div class="col-md-10">
+                    <input class="form-control text-box single-line" id="ten" name="ten" type="text" value="" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Ảnh bìa:</label>
+                <div class="col-md-10">
+                    <input type="file" name="file" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Update" class="btn btn-warning" style="margin-bottom:10px" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            Thể loại
+        </th>
+        <th>
+            Ảnh bìa
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="vertical-align: middle">
+                @Html.DisplayFor(modelItem => item.tenLoai)
+            </td>
+            <td>
+                <img src="@Url.Content(@item.imgLoai)" style="width:120px" />
+            </td>
+            <td style="vertical-align: middle">
+                <button class="btn btn-warning" onclick="clickEdit(@item.idTheloai,'@item.tenLoai')"><p>Chỉnh sửa</p><span class="glyphicon glyphicon-edit"></span></button>
+                <button class="btn btn-info" onclick="location.href='/Admin/DetailsTheloai/@item.idTheloai'"><p>Danh sách</p><span class="glyphicon glyphicon-info-sign"></span></button>
+                <form action="/Admin/DeleteTheloai/@item.idTheloai" method="post" style="display:contents">
+                    <button type="submit" class="btn btn-danger"><p>Xóa thể loại</p><span class="glyphicon glyphicon-trash"></span></button>
+                </form>
+            </td>
+        </tr>
+
+    }
+
+</table>
+<div class="page">
+    <ul id="pagi">
+        @Html.PagedListPager(Model, page => Url.Action("Theloai", new { page = page }))
+    </ul>
+</div>
+
+<script type="text/javascript">
+    function changeIcon(anchor) {
+        var x = document.getElementById("myDIV");
+        var y = document.getElementById("myEdit");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            if (y.style.display === "block") {
+                y.style.display = "none";
+                x.style.display = "block";
+            }
+            else
+                x.style.display = "block";
+        }
+
+        var icon = anchor.querySelector("span");
+        icon.classList.toggle('glyphicon-triangle-bottom');
+        icon.classList.toggle('glyphicon-triangle-top');
+    }
+
+    function clickEdit(id, ten) {
+        var x = document.getElementById("myEdit");
+        var y = document.getElementById("myDIV");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+            document.getElementById("myForm").action = "/Admin/Theloai/";
+            document.getElementById("ten").value = "";
+        } else {
+            if (y.style.display === "block") {
+                y.style.display = "none";
+                x.style.display = "block";
+                document.getElementById("myForm").action = "/Admin/Theloai/" + id;
+                document.getElementById("ten").value = ten;
+            }
+            else
+                x.style.display = "block";
+            document.getElementById("myForm").action = "/Admin/Theloai/" + id;
+            document.getElementById("ten").value = ten;
+        }
+    }
+
+</script>
+
+<style>
+    #myDIV, #myEdit {
+        display: none;
+        background-color: whitesmoke;
+    }
+
+    td, th {
+        text-align: center;
+    }
+
+    .page {
+        text-align: center;
+        font-size: 1em;
+        font-weight: normal;
+        border-bottom: 0px;
+        margin: 30px 0
+    }
+
+    #pagi {
+        margin: 0;
+        padding: 0;
+        text-align: center
+    }
+
+        #pagi li {
+            display: inline
+        }
+
+            #pagi li a {
+                display: inline-block;
+                text-decoration: none;
+                padding: 5px 10px;
+                color: #000
+            }
+    .topnav {
+        margin-bottom:10px;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 10px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+            .topnav a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+
+            .topnav a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+</style>

@@ -1,0 +1,91 @@
+﻿@using MusicCloud.Models
+@model IEnumerable<MusicCloud.Models.Album>
+@{
+    User user = (User)Session["taikhoan"];
+    if (user == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    }
+}
+@section login{
+    @RenderPage("~/Views/Home/Login.cshtml")
+}
+@section sign{
+    @RenderPage("~/Views/Home/Sign.cshtml")
+}
+<html lang="en">
+<head>
+    <link href="~/Content/album.css" rel="stylesheet" />
+</head>
+<body>
+    <main class="album">
+        <div class="album_music">
+            <div class="container">
+                <div class="products-title">
+                    <h2>Album</h2>
+                </div>
+                <div class="product-list">
+                    <!---->
+                    @foreach (var item in Model.Take(4))
+                    {
+                        <div class="product-item" onclick="location.href='/Home/DetailsAlbum/@item.idAlbum'">
+                            <div class="product-img">
+                                <a><img src="@item.imgAlbum" alt="nhạc Lofi"></a>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="product-name">
+                                    <a href="/Home/DetailsAlbum/@item.idAlbum">@item.tenAlbum</a>
+                                </h3>
+                                <a href=""><i class="fa-solid fa-play"></i></a>
+                            </div>
+                        </div>
+                    }
+                    <!---->
+                </div>
+                <div class="product-list">
+                    <!---->
+                    @foreach (var item in Model.Skip(4).Take(4))
+                    {
+                        <div class="product-item" onclick="location.href='/Home/DetailsAlbum/@item.idAlbum'">
+                            <div class="product-img">
+                                <a><img src="@item.imgAlbum" alt="nhạc Lofi"></a>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="product-name">
+                                    <a href="/Home/DetailsAlbum/@item.idAlbum">@item.tenAlbum</a>
+                                </h3>
+                                <a href=""><i class="fa-solid fa-play"></i></a>
+                            </div>
+                        </div>
+                    }
+                    <!---->
+                </div>
+                <div class="product-list">
+                    <!---->
+                    @foreach (var item in Model.Skip(8).Take(4))
+                    {
+                        <div class="product-item" onclick="location.href='/Home/DetailsAlbum/@item.idAlbum'">
+                            <div class="product-img">
+                                <a><img src="@item.imgAlbum" alt="nhạc Lofi"></a>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="product-name">
+                                    <a href="/Home/DetailsAlbum/@item.idAlbum">@item.tenAlbum</a>
+                                </h3>
+                                <a href=""><i class="fa-solid fa-play"></i></a>
+                            </div>
+                        </div>
+                    }
+                    <!---->
+                </div>
+            </div>
+        </div>
+
+    </main>
+</body>
+</html>
+

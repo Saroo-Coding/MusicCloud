@@ -1,0 +1,119 @@
+﻿body {
+    color: #ffff;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+/* playlist */
+.song {
+    margin: 50px auto;
+}
+
+.song_wrapper h2 {
+    margin-right: 200px;
+    margin-left: 50px;
+    font-size: 25px;
+}
+
+.song_wrapper .menu_song {
+    margin: 30px auto;
+    width: 80%;
+}
+
+.song_wrapper .song_oveflow {
+    height: auto;
+    /* overflow: auto; */
+}
+
+.song_wrapper .menu_song li {
+    list-style-type: none;
+    position: relative;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: .3s linear;
+}
+
+    .song_wrapper .menu_song li span {
+        font-size: 15px;
+        font-weight: 600;
+        color: cadetblue;
+        margin-left: 5px;
+    }
+
+    .song_wrapper .menu_song li:hover {
+        background: linear-gradient(to right, #520c7d, #1b9fe6);
+        border-radius: 15px;
+    }
+
+    .song_wrapper .menu_song li img {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        margin-left: 25px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+    }
+
+    .song_wrapper .menu_song li h5 {
+        font-size: 17px;
+        margin-left: 25px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+        .song_wrapper .menu_song li h5 a {
+            text-decoration: none;
+        }
+
+        .song_wrapper .menu_song li h5 .wrapper {
+            padding-top: 5px;
+        }
+
+        .song_wrapper .menu_song li h5 .song_name_ns {
+            font-size: 14px;
+            color: rgb(88, 144, 146);
+        }
+
+        .song_wrapper .menu_song li h5 a:hover {
+            font-size: 17px;
+            color: rgb(29, 210, 216);
+        }
+
+.song_wrapper .menu_song .fa-regular {
+    display: none;
+}
+
+.song_wrapper .menu_song:hover .aa .fa-regular {
+    display: block;
+    position: absolute;
+    left: 68px;
+    font-size: 25px;
+    top: 20px;
+    color: #ffff;
+}
+
+.song_wrapper .menu_song:hover .add_playlist {
+    display: block;
+}
+
+.song_wrapper .menu_song .add_playlist {
+    position: absolute;
+    right: 60px;
+    font-size: 20px;
+    top: 20px;
+    color: #ffff;
+}
+
+.song_wrapper .menu_song .nut_tym {
+    position: absolute;
+    right: 15px;
+    font-size: 20px;
+    top: 20px;
+    color: #ffff;
+}

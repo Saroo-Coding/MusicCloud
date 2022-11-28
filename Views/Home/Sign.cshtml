@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = null;
+}
+<h1 style="margin: 1em auto; text-align: center; text-transform: uppercase;">Đăng ký</h1>
+<form action="/Home/Sign" method="post" style="margin-left:9%;margin-right:9%;">
+    <fieldset style="border: none; display:inline-grid;width:100%;">
+        <label for="name" style="height: 40px; font-size: larger;">
+            Tên đăng nhập:
+            <input name="name" placeholder="Account...." type="text" required style="width: 67%; float: right; font-size: large; padding: 2%; border-radius: 10px;" />
+        </label>
+        <label for="email" style="height: 40px; font-size: larger; margin-top: 5%;">
+            Email:
+            <input name="email" placeholder="xxxxxx@gmail.com..." type="email" required style="width: 67%; float: right; font-size: large; padding: 2%; border-radius: 10px;" />
+        </label>
+        <label for="nhappass" style="height: 40px; font-size: larger; margin-top: 5%;">
+            Password:
+            <input name="nhappass" placeholder="123456789..." type="password" required style="width: 67%; float: right; font-size: large; padding: 2%; border-radius: 10px;" />
+        </label>
+        <label for="nhaplaipass" style="height: 40px; font-size: larger; margin-top: 5%;">
+            Repeat:
+            <input id="nhaplaipass" name="nhaplaipass" placeholder="123456789..." type="password" required style="width: 67%; float: right; font-size: large; padding: 2%; border-radius: 10px;" />
+        </label>
+        <h4 style="color: red; text-align: right;">@ViewBag.Sign</h4>
+    </fieldset>
+    <fieldset style="margin-top: 5%; border: none;">
+        <label for="checkbox" name="checkbox" style="margin-top:5%;">
+            <input id="checkbox" type="checkbox" name="checkbox" class="inline" required /><a href="#">Tôi đã đọc đồng ý với điều kiện thỏa thuận sử dụng</a>
+        </label>
+    </fieldset>
+    <input class="btnsign" type="submit" value="Đăng kí" />
+    <a style="text-align: center; display: block">------------Đăng nhập bằng------------</a>
+    <fieldset style="display: inline-grid; border: none; width: 100%;text-align:center;">
+        <label style="margin-top: 3%;">
+            <button type="button" onclick="fbLogin();" class="btn-facebook" style="background-color: #3b5998;"><span class="fa fa-facebook" style="width: 40px; line-height: 25px; font-size: 1.6em; text-align: center; border-right: 1px solid #373737; float: left; margin-right: 15px"></span>Đăng nhập bằng Facebook</button>
+        </label>
+        <label style="margin-top: 7%;">
+            <button type="button" onclick="" class="btn-facebook" style="background-color: #dd4b39; "><span class="fa fa-google" style="width: 40px; line-height: 25px; font-size: 1.6em; text-align: center; border-right: 1px solid #373737; float: left; margin-right: 15px"></span>Đăng nhập bằng Gmail</button>
+        </label>
+    </fieldset>
+</form>
+
+<style>
+    .btnsign {
+        margin-top: 2%;
+        margin-bottom: 3%;
+        padding: 8px 20px;
+        box-shadow: rgb(0 0 0 / 40%) 0px 0px 10px;
+        background: linear-gradient(to right, #520c7d, #1b9fe6);
+        border: none;
+        font-size: 14px;
+        border-radius: 15px;
+        text-decoration: none;
+        color: #ffff;
+        margin-left: 21%;
+        width: 60%;
+    }
+    .btn-facebook {
+        line-height: 25px;
+        text-align: left;
+        color: #fff;
+        border: none;
+        height: 150%;
+        width: 80%;
+        border-radius: 5px;
+        box-shadow: rgb(0 0 0 / 40%) 0px 0px 10px;
+    }
+
+        .btn-facebook:hover {
+            color: #fff;
+            background-color: #2d4373;
+            border-color: rgba(0,0,0,0.2)
+        }
+</style>

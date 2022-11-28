@@ -1,0 +1,338 @@
+﻿* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/* header*/
+ul {
+    list-style: none; /*xóa dấu chấm*/
+}
+
+a {
+    text-decoration: none; /*bỏ gạch chân*/
+    color: #ffff;
+}
+
+body {
+    width: 100%;
+    height: 99.9vh;
+    background: linear-gradient(to right, #2D0149, #520c7d);
+}
+
+header {
+    display: flex;
+    height: 100%;
+}
+
+section {
+    height: 100%;
+    width: 15%;
+    background: #1d022e;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+}
+    /* icon */
+    section .fa-solid, .fa-brands, .fa-regular {
+        color: #ffff;
+        font-size: 18px;
+        margin-right: 10px;
+    }
+
+    section .menu_bottom .menu_links .fa-solid.icon_1 {
+        color: rgb(36, 244, 144);
+    }
+
+    section .menu_bottom .menu_links .fa-brands.icon_2 {
+        color: rgb(241, 36, 244);
+    }
+
+    section .menu_bottom .menu_links .fa-solid.icon_3 {
+        color: yellow;
+    }
+
+    section .menu_bottom .menu_links .fa-solid.icon_4 {
+        color: rgb(0, 229, 255);
+    }
+    /* end  icon */
+
+    /* hover */
+    section li:hover a {
+        opacity: .8;
+    }
+
+    /* end hover */
+
+
+    /* menu_top */
+
+    section .menu_top {
+        position: relative;
+        height: 40%;
+    }
+
+        section .menu_top .container {
+            padding: 20px 20px;
+            color: #ffff;
+        }
+
+        section .menu_top .name {
+            font-size: 20px;
+            display: flex;
+        }
+
+            section .menu_top .name .name_1 {
+                margin-right: 5px;
+                background: linear-gradient(to right, #520c7d, #1b9fe6);
+                padding: 5px 5px;
+                box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+                border-radius: 5px;
+            }
+
+            section .menu_top .name .name_2 {
+                padding: 5px 0;
+            }
+
+    section .menu_click {
+        margin-top: 35px;
+    }
+
+        section .menu_click .menu_links .link {
+            margin: 20px 0;
+            font-size: 18px;
+        }
+/* end menu_top */
+
+.border_bottom {
+    margin: 0 20px;
+    border-bottom: 1px solid #fff;
+}
+/* menu_bottom*/
+
+section .menu_bottom {
+    position: relative;
+    height: 60%;
+}
+
+    section .menu_bottom .container {
+        padding: 0 20px;
+        color: #ffff;
+        width: 100%;
+        height: 50%;
+        overflow: auto;
+    }
+
+section .menu_click .menu_link .link {
+    margin: 20px 0;
+    font-size: 18px;
+}
+/**/
+section .menu_click .menu_links {
+    margin-top: 50px;
+}
+/* đăng nhập */
+section .menu_bottom .menu_links li {
+    background-color: #40afea;
+    width: 180px;
+    height: 100px;
+    border-radius: 15px;
+}
+
+section .menu_bottom .menu_links .link button {
+    background-color: #1b9fe6;
+    padding: 5px 18px;
+    margin: 5px 35px;
+    border: 1px solid #ffff;
+    border-radius: 15px;
+}
+/* end đăng nhập */
+
+/* nâng cấp vip */
+section .menu_bottom .menu_links .links {
+    background: linear-gradient(to right, #520c7d, #1b9fe6);
+}
+
+    section .menu_bottom .menu_links .links button {
+        background-color: yellow;
+        padding: 5px 20px;
+        margin-top: 10px;
+        margin-left: 28px;
+        border: none;
+        border-radius: 15px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+    }
+
+        section .menu_bottom .menu_links .links button a {
+            color: black;
+            font-size: 13px;
+        }
+/* end nâng cấp vip */
+
+section .menu_bottom .menu_links li p {
+    padding: 8px 8px;
+    font-size: 15px;
+    text-align: center;
+}
+
+section .menu_bottom .container::-webkit-scrollbar {
+    width: 6px;
+}
+
+section .menu_bottom .container::-webkit-scrollbar-thumb {
+    background-color: #a940ea;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+}
+
+section .logo_nhom img {
+    margin: 15px 20px;
+    width: 180px;
+    height: 180px;
+    border: 1px solid #a940ea;
+}
+/* tim kiem */
+.menu_timkiem {
+    width: 100%;
+    height: 10%;
+    background-color: #1d022ec2;
+    display: flex;
+    justify-content: center;
+}
+
+.menu_timkiems {
+    margin: 15px 100px;
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+}
+
+    .menu_timkiems input#search {
+        width: 450px;
+        height: 40px;
+        background: #2b303b;
+        border: none;
+        font-size: 10pt;
+        float: left;
+        color: #63717f;
+        padding-left: 45px;
+        border-radius: 20px;
+    }
+
+    .menu_timkiems .icon {
+        position: absolute;
+        top: 50%;
+        margin-left: 17px;
+        margin-top: 12px;
+        z-index: 1;
+        color: #4f5b66;
+    }
+/* end tìm kiếm */
+
+/* icon user*/
+/* vip */
+.menu_user .user_vip {
+    margin-right: 10%;
+}
+
+.user_vip .fa-regular, .icon_setting {
+    font-size: 20px;
+    background: #2b303b;
+    color: #ffff;
+    padding: 15px 15px;
+    border-radius: 50%;
+}
+/* end vip */
+/* users*/
+.menu_user {
+    margin: 12px 0;
+    display: flex;
+}
+
+    .menu_user .users {
+        background: linear-gradient(to right, #520c7d, #1b65e6);
+        border-radius: 50%;
+    }
+
+        .menu_user .users .click_user {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px #2b303b, 0 0 0 5px #1b65e6;
+        }
+
+            .menu_user .users .click_user img {
+                height: 100%;
+                width: 100%;
+                border-radius: 50%;
+            }
+
+        .menu_user .users .fa-solid {
+            font-size: 25px;
+            color: #ffff;
+        }
+
+    .menu_user .users {
+        position: relative;
+        width: 50px;
+        height: 50px;
+    }
+/**/
+/* show click */
+.click-navigation.active {
+    visibility: visible;
+    opacity: 1;
+    margin-top: 45px;
+    height: 280px;
+}
+
+.click-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transition: .5s;
+    width: 200px;
+    height: 0;
+    position: absolute;
+    right: 0;
+    border: 1px solid black;
+    background: #2b303b;
+    top: 0;
+    z-index: 1;
+    overflow: hidden; /*Khi chiều cao của box không đủ chứa text, thì text bị tràn sẽ được dấu đi.*/
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+    margin-right: 30px;
+    border-radius: 7px;
+}
+
+    .click-navigation a {
+        font-size: 18px;
+        color: white;
+        padding: 30px 0;
+    }
+
+    .click-navigation .clicks:hover {
+        opacity: .7;
+    }
+
+    .click-navigation .clicks {
+        padding: 15px 0;
+    }
+
+        .click-navigation .clicks .fa-solid {
+            margin-right: 12px;
+            font-size: 16px;
+        }
+
+        .click-navigation .clicks .icon_GT {
+            padding: 0 6px;
+            margin-right: 10px;
+            font-size: 16px;
+            border: 2px solid #ffff;
+            border-radius: 50%;
+            background: #2b303b;
+        }
+
+/*  main  */
+
+/*  end main  */

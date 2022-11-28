@@ -1,0 +1,95 @@
+﻿@using MusicCloud.Models
+@model IEnumerable<MusicCloud.Models.Baihat>
+@{
+    User user = (User)Session["taikhoan"];
+    if (user == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    }
+}
+@section login{
+    @RenderPage("~/Views/Home/Login.cshtml")
+}
+@section sign{
+    @RenderPage("~/Views/Home/Sign.cshtml")
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="~/Content/baihat.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- bai Hat -->
+    <div class="song">
+        <div class="container">
+            <div class="song_wrapper">
+                @if (user == null)
+                {
+                    <h2><span><i class="fa-solid fa-music"></i></span> Bài hát</h2>
+                }
+                else
+                {
+                    <h2><span><i class="fa-solid fa-music"></i></span> Bài hát @Html.DropDownList("idList", (IEnumerable<SelectListItem>)ViewBag.idList, "Chọn playlist", new { @style = "font-size: large; float:right; width:25%;padding: 5px;" })</h2>
+                }
+                <h4 style="color: red; text-align: center;">@ViewBag.Tb</h4>
+                <div class="song_oveflow">
+                    @foreach (var item in Model)
+                    {
+                        <div class="menu_song">
+                            <li class="song_item">
+                                <span><i class="fa-solid fa-music"></i></span>
+                                <a href="/Home/Playmusic/@item.idSong"><img src="@item.imgSong"></a>
+                                <h5 onclick="location.href='/Home/Playmusic/@item.idSong'">
+                                    @item.tenSong<br>
+                                    <div class="wrapper">
+                                        <a class="song_name_ns" href="/Home/DetailsNghesi/@item.ngheDanh">@item.ngheDanh</a>
+                                    </div>
+                                </h5>
+                                @if (user == null)
+                                {
+                                    <i onclick="momess()" class="fa-solid add_playlist fa-plus" title="Thêm vào playlist"></i>
+                                    <i onclick="momess()" class="fa-solid nut_tym fa-heart-circle-plus" title="Yêu thích"></i>
+                                }
+                                else
+                                {
+                                    <i onclick="addlist('@item.idSong')" class="fa-solid add_playlist fa-plus" title="Thêm vào playlist"></i>
+                                    <i class="fa-solid nut_tym fa-heart-circle-plus" title="Yêu thích"></i>
+                                }
+                            </li>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (user == null) { }
+    else
+    {
+        <form id="formAdd" action="/Home/Baihat" method="post" style="display:none">
+            <input name="idlist" id="idlist" value="" />
+            <input name="idsong" id="idsong" value="" />
+            <input name="iduser" id="iduser" value="@user.idUser" />
+        </form>
+    }
+    <!-- end bai hat -->
+</body>
+</html>
+<script>
+    function addlist(id) {
+        var text = document.getElementById("idList").value;
+        if (text == 0) {
+            alert("Hãy chọn playlist muốn thêm !!!");
+        }
+        else {
+            document.getElementById("idlist").value = text;
+            document.getElementById("idsong").value = id;
+            document.getElementById("formAdd").submit();
+        }
+    }
+</script>
+

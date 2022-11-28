@@ -1,0 +1,59 @@
+﻿/* mobile */
+@media screen and (max-width: 600px) {
+    .menu_click span {
+        display: none;
+    }
+
+    .name h2 {
+        font-size: 17px;
+    }
+
+    .menu_links h3 {
+        font-size: 12px;
+    }
+
+    .menu_links .links {
+        display: none;
+    }
+
+    .menu_links .link.linss {
+        display: none;
+    }
+
+    .logo_nhom .container-anh {
+        width: 40px;
+        height: 40px;
+        margin: 0 10px;
+    }
+
+    .menu_timkiem {
+        background: #1d022e;
+    }
+
+    .box .menu_timkiems #search {
+        width: 180px;
+    }
+
+    .box .menu_timkiems {
+        margin-left: 80px;
+    }
+
+    .user_vip {
+        display: none;
+    }
+
+    .menu_user .users .click_user {
+        margin-left: -80px;
+        width: 40px;
+        height: 40px;
+        margin-top: 5px;
+    }
+
+    .click_menu_user .clicks {
+        display: none;
+    }
+
+    section .menu_bottom .container::-webkit-scrollbar-thumb {
+        display: none;
+    }
+}

@@ -1,0 +1,138 @@
+﻿@using MusicCloud.Models
+@{
+    Admin ad = (Admin)Session["admin"];
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="icon" href="~/Image/logo.png" type="image/x-icon" />
+    <title>Music Cloud Entertainment</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <meta name="viewport" content="width=device-width" />
+
+</head>
+<body style="height:100vh">
+    <div id="viewport">
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <header>
+                <a href="@Url.Action("Index","Admin")">Quản lý</a>
+            </header>
+            <ul class="nav">
+                <li>
+                    <a href="@Url.Action("Baihat","Admin")">
+                        <i class="zmdi zmdi-view-dashboard"></i> Quản lý nhạc
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Casi","Admin")">
+                        <i class="zmdi zmdi-link"></i> Quản lý ca sĩ
+                    </a>
+                </li>
+               @* <li>
+                    <a href="@Url.Action("Laithu","Admin")">
+                        <i class="zmdi zmdi-widgets"></i> Quản lý yêu cầu
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("hd_Hoadon","Admin")">
+                        <i class="zmdi zmdi-calendar"></i> Quản lý đăng nhạc
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Quangcao","Admin")">
+                        <i class="zmdi zmdi-info-outline"></i> Quản lý quảng cáo
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Qly","Admin")">
+                        <i class="zmdi zmdi-settings"></i> Quản lý Admin
+                    </a>
+                </li>*@
+            </ul>
+        </div>
+        <!-- Content -->
+        <div id="content">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><span class="glyphicon glyphicon-user" style="font-size: 20px; top: 15px "></span></li>
+                        <li><a style="margin-right: 30px; padding-left: 3px ">@ad.user</a></li>
+                        <li><span class="glyphicon glyphicon-off" style="font-size: 20px; top: 15px "></span></li>
+                        <li><a href="@Url.Action("Login","Admin")" style="padding-left: 3px">Log out</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div style="padding-left:18%;padding-top:4%;padding-right:1%">
+        @RenderBody()
+    </div>
+</body>
+</html>
+
+<style type="text/css">
+    body {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    #viewport {
+        position:fixed;
+        width:100%;
+        height:7%;
+    }
+
+    #content {
+        width: 100%;
+        position: relative;
+        margin-right: 0;
+    }
+
+    #sidebar {
+        z-index: 1;
+        position: fixed;
+        width: 17%;
+        height: 100%;
+        overflow-y: auto;
+        background: #37474F;
+    }
+
+        #sidebar header {
+            background-color: #263238;
+            font-size: 20px;
+            line-height: 52px;
+            text-align: center;
+        }
+
+            #sidebar header a {
+                color: #fff;
+                display: block;
+                text-decoration: none;
+            }
+
+                #sidebar header a:hover {
+                    color: #fff;
+                }
+
+        #sidebar .nav {
+        }
+
+            #sidebar .nav a {
+                background: none;
+                border-bottom: 1px solid #455A64;
+                color: #CFD8DC;
+                font-size: 14px;
+                padding: 16px 24px;
+            }
+
+                #sidebar .nav a:hover {
+                    background: none;
+                    color: #ECEFF1;
+                }
+
+                #sidebar .nav a i {
+                    margin-right: 16px;
+                }
+</style>

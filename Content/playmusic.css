@@ -1,0 +1,234 @@
+﻿body {
+    color: #ffff;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.boc {
+    display: flex;
+}
+
+.music {
+    background: linear-gradient(to right, #1b9fe6, #520c7d);
+    margin: 50px 10px;
+    padding: 35px 30px;
+    border-radius:15px;
+}
+
+.music-img {
+    width: 170px;
+    height: 170px;
+    margin: 0 auto 25px;
+}
+
+    .music-img.play-inner {
+        animation: quayquay 7s infinite linear;
+    }
+
+@keyframes quayquay {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.music-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+}
+
+.music-name {
+    font-size: 17px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+/**/
+.ten {
+    display: flex;
+    justify-content: center;
+}
+
+    .ten a {
+        text-decoration: none;
+        color: #ffff;
+    }
+/**/
+.music-name h5 {
+    font-weight: 500;
+}
+
+.music h3 {
+    font-size: 20px;
+}
+
+.thoigian {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+.nut {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 40px;
+}
+
+.play {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(to right, #520c7d, #1b9fe6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 0 0 2px #ffff;
+    font-size: 20px;
+    color: #ffff;
+}
+
+.nut-lui,
+.nut-tien,
+.ngau-nhien,
+.lap-lai,
+.like-tym {
+    cursor: pointer;
+}
+
+#range {
+    -webkit-appearance: none;
+    width: 100%;
+    background-color: transparent;
+}
+
+    #range::-webkit-slider-runnable-track {
+        height: 5px;
+        width: 100%;
+        background: linear-gradient(to right, #520c7d, #1b9fe6);
+        cursor: pointer;
+        border-radius: 10px;
+    }
+
+    #range::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        background-color: black;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        box-shadow: 0 0 0 2px #ffff;
+        margin-top: -2px;
+    }
+
+.like-tym {
+    display: flex;
+    justify-content: space-around;
+    margin: 25px 70px;
+}
+
+/* playlist */
+.playlist {
+    border-left: 2px solid #ffffff;
+    margin: 50px auto;
+}
+
+.container {
+}
+
+.playlist_wrapper h3 {
+    padding-left: 10%;
+}
+
+.playlist_wrapper .menu_song {
+    margin: 30px 150px;
+    width: 600px;
+}
+
+.playlist_wrapper .playlist_oveflow {
+    height: 450px;
+    overflow: auto;
+}
+
+    .playlist_wrapper .playlist_oveflow::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .playlist_wrapper .playlist_oveflow::-webkit-scrollbar-thumb {
+        background-color: #1b9fe6;
+        border-radius: 15px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+    }
+
+.playlist_wrapper .menu_song li {
+    list-style-type: none;
+    position: relative;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: .3s linear;
+}
+
+    .playlist_wrapper .menu_song li span {
+        font-size: 15px;
+        font-weight: 600;
+        color: cadetblue;
+        margin-left: 5px;
+    }
+
+    .playlist_wrapper .menu_song li:hover {
+        background: linear-gradient(to right, #520c7d, #1b9fe6);
+        border-radius: 15px;
+    }
+
+    .playlist_wrapper .menu_song li img {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        margin-left: 25px;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+    }
+
+    .playlist_wrapper .menu_song li h5 {
+        font-size: 17px;
+        margin-left: 25px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+        .playlist_wrapper .menu_song li h5 a {
+            text-decoration: none;
+        }
+
+        .playlist_wrapper .menu_song li h5 .wrapper {
+            padding-top: 5px;
+        }
+
+        .playlist_wrapper .menu_song li h5 .song_name_ns {
+            font-size: 14px;
+            color: rgb(88, 144, 146);
+        }
+
+        .playlist_wrapper .menu_song li h5 a:hover {
+            font-size: 17px;
+            color: rgb(29, 210, 216);
+        }
+
+.playlist_wrapper .menu_song .aa .fa-regular {
+    position: absolute;
+    right: 15px;
+    font-size: 25px;
+    top: 18px;
+    color: #ffff;
+}

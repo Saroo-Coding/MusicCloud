@@ -1,0 +1,139 @@
+﻿* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #2D0149;
+    color: #ffff;
+}
+
+a {
+    text-decoration: none; /*bỏ gạch chân*/
+    color: black;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.container {
+    width: 85%;
+    margin: 100px auto;
+}
+
+    .container .logo {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+        .container .logo img {
+            border-radius: 50%;
+            border: 5px solid #ffff;
+            width: 110px;
+            height: 110px;
+            margin: 0 20px;
+        }
+
+    .container .container_wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+        .container .container_wrapper .name h1 {
+            display: flex;
+            justify-content: center;
+            margin: 25px 0;
+        }
+
+        .container .container_wrapper .name p {
+            display: flex;
+            justify-content: center;
+            font-size: 25px;
+        }
+    /* mua vip */
+    .container .wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+        .container .wrapper .products {
+            margin: 0 auto;
+            width: 300px;
+            height: 450px;
+            background-color: rgb(250, 235, 215);
+            border-radius: 30px;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;
+        }
+
+            .container .wrapper .products .vip {
+                display: flex;
+                justify-content: center;
+                margin: 20px 0;
+                color: darkmagenta;
+                font-size: 50px;
+            }
+
+            .container .wrapper .products .name {
+                width: 100%;
+                background-color: #ffff;
+            }
+
+                .container .wrapper .products .name h2 {
+                    width: 120px;
+                    padding-top: 15px;
+                    display: flex;
+                    justify-content: center;
+                    margin: 0 auto;
+                    border-bottom: 1px solid darkmagenta;
+                    color: black;
+                }
+
+                .container .wrapper .products .name .number {
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 15px;
+                }
+
+                    .container .wrapper .products .name .number h1 {
+                        font-size: 100px;
+                        color: darkmagenta;
+                    }
+
+                    .container .wrapper .products .name .number h3 {
+                        margin-top: 25px;
+                        margin-left: 2px;
+                        font-size: 30px;
+                        color: darkmagenta;
+                    }
+
+                .container .wrapper .products .name .sale {
+                    margin-left: 158px;
+                    text-decoration: line-through;
+                    font-size: 22px;
+                    color: black;
+                }
+
+            .container .wrapper .products .button {
+                display: flex;
+                justify-content: center;
+                margin-top: 50px;
+            }
+
+                .container .wrapper .products .button button {
+                    width: 200px;
+                    height: 50px;
+                    border-radius: 25px;
+                    border: none;
+                    background-color: yellow;
+                    cursor: pointer;
+                    font-size: 25px;
+                }
+
+                    .container .wrapper .products .button button:hover {
+                        box-shadow: rgb(214, 214, 51) 0px 0px 40px;
+                    }
